@@ -1,23 +1,33 @@
-# abbrev-js
+# babel-plugin-jest-hoist
 
-Just like [ruby's Abbrev](http://apidock.com/ruby/Abbrev).
+Babel plugin to hoist `jest.disableAutomock`, `jest.enableAutomock`, `jest.unmock`, `jest.mock`, calls above `import` statements. This plugin is automatically included when using [babel-jest](https://github.com/jestjs/jest/tree/main/packages/babel-jest).
 
-Usage:
+## Installation
 
-    var abbrev = require("abbrev");
-    abbrev("foo", "fool", "folding", "flop");
-    
-    // returns:
-    { fl: 'flop'
-    , flo: 'flop'
-    , flop: 'flop'
-    , fol: 'folding'
-    , fold: 'folding'
-    , foldi: 'folding'
-    , foldin: 'folding'
-    , folding: 'folding'
-    , foo: 'foo'
-    , fool: 'fool'
-    }
+```sh
+$ yarn add --dev babel-plugin-jest-hoist
+```
 
-This is handy for command-line scripts, or other cases where you want to be able to accept shorthands.
+## Usage
+
+### Via `babel.config.js` (Recommended)
+
+```js
+module.exports = {
+  plugins: ['jest-hoist'],
+};
+```
+
+### Via CLI
+
+```sh
+$ babel --plugins jest-hoist script.js
+```
+
+### Via Node API
+
+```javascript
+require('@babel/core').transform('code', {
+  plugins: ['jest-hoist'],
+});
+```

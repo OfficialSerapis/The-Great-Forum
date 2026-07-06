@@ -1,14 +1,14 @@
-'use strict';
+const { createHash } = require('crypto');
+const { name } = require('../package.json');
+// TODO: increment this version if there are schema changes
+// that are not backwards compatible:
+const VERSION = '4';
 
+const SHA = 'sha1';
 module.exports = {
-  // agent
-  CURRENT_ID: Symbol('agentkeepalive#currentId'),
-  CREATE_ID: Symbol('agentkeepalive#createId'),
-  INIT_SOCKET: Symbol('agentkeepalive#initSocket'),
-  CREATE_HTTPS_CONNECTION: Symbol('agentkeepalive#createHttpsConnection'),
-  // socket
-  SOCKET_CREATED_TIME: Symbol('agentkeepalive#socketCreatedTime'),
-  SOCKET_NAME: Symbol('agentkeepalive#socketName'),
-  SOCKET_REQUEST_COUNT: Symbol('agentkeepalive#socketRequestCount'),
-  SOCKET_REQUEST_FINISHED_COUNT: Symbol('agentkeepalive#socketRequestFinishedCount'),
+    SHA,
+    MAGIC_KEY: '_coverageSchema',
+    MAGIC_VALUE: createHash(SHA)
+        .update(name + '@' + VERSION)
+        .digest('hex')
 };
