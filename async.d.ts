@@ -1,12 +1,10 @@
-import AsyncReader from '../readers/async';
-import type Settings from '../settings';
-import type { Entry, Errno } from '../types';
-export declare type AsyncCallback = (error: Errno, entries: Entry[]) => void;
-export default class AsyncProvider {
-    private readonly _root;
-    private readonly _settings;
-    protected readonly _reader: AsyncReader;
-    private readonly _storage;
-    constructor(_root: string, _settings: Settings);
-    read(callback: AsyncCallback): void;
+import * as fsWalk from '@nodelib/fs.walk';
+import { Entry, ReaderOptions, Pattern } from '../types';
+import Reader from './reader';
+import ReaderStream from './stream';
+export default class ReaderAsync extends Reader<Promise<Entry[]>> {
+    protected _walkAsync: typeof fsWalk.walk;
+    protected _readerStream: ReaderStream;
+    dynamic(root: string, options: ReaderOptions): Promise<Entry[]>;
+    static(patterns: Pattern[], options: ReaderOptions): Promise<Entry[]>;
 }

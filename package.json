@@ -1,18 +1,24 @@
 {
-  "name": "cookie-signature",
-  "version": "1.0.7",
-  "description": "Sign and unsign cookies",
-  "keywords": ["cookie", "sign", "unsign"],
-  "author": "TJ Holowaychuk <tj@learnboost.com>",
-  "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/visionmedia/node-cookie-signature.git"},
-  "dependencies": {},
+  "name": "fast-diff",
+  "version": "1.1.2",
+  "description": "Fast Javascript text diff",
+  "author": "Jason Chen <jhchen7@gmail.com>",
+  "main": "diff.js",
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "googlediff": "~0.1.0",
+    "lodash": "~3.9.3",
+    "seedrandom": "~2.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhchen/fast-diff"
+  },
+  "bugs": {
+    "url": "https://github.com/jhchen/fast-diff/issues"
   },
   "scripts": {
-    "test": "mocha --require should --reporter spec"
+    "test": "node test.js"
   },
-  "main": "index"
+  "license": "Apache-2.0",
+  "keywords": ["diff"]
 }

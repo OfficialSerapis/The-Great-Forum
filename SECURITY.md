@@ -1,15 +1,15 @@
 # Security Policy
 
-As with any software, `bcrypt` is likely to have bugs. Please report any security vulnerabilities responsibly
-
 ## Supported Versions
+
+Use this section to tell people about which versions of your project are
+currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.0.x   | :white_check_mark: |
-| < 5.0   | :x:                |
+| 1.x     | :white_check_mark: |
+| < 1.0   | :x:                |
 
 ## Reporting a Vulnerability
 
-If you are reporting a security vulnerability, please refrain from opening a GitHub issue and instead mail it to
-one of the maintainers listed in the README.
+Please report all vulnerabilities at [https://github.com/mcollina/fastq/security](https://github.com/mcollina/fastq/security).
