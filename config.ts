@@ -1,94 +1,63 @@
-import { createClient } from 'redis';
-import { createConnection } from 'typeorm';
+import { createClient } from '@sentry/node';
+import { createTransport } from 'nodemailer';
 import { Logger } from '../utils/logger';
 
-const logger = new Logger('BackupSystem');
+// Initialize Sentry
+const sentry = createClient({
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+  tracesSampleRate: 1.0,
+});
 
-interface BackupConfig {
-  database: {
-    type: 'postgres' | 'mysql' | 'sqlite';
-    host: string;
-    port: number;
-    name: string;
-    user: string;
-    password: string;
-  };
-  redis: {
-    host: string;
-    port: number;
-    password?: string;
-  };
-  storage: {
-    type: 'local' | 's3' | 'azure';
-    path: string;
-    bucket?: string;
-    accessKey?: string;
-    secretKey?: string;
-  };
-  schedule: {
-    daily: boolean;
-    weekly: boolean;
-    monthly: boolean;
-  };
-  retention: {
-    days: number;
-    weeks: number;
-    months: number;
-  };
-}
+// Initialize email transport
+const emailTransport = createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
-const config: BackupConfig = {
-  database: {
-    type: process.env.DB_TYPE || 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT || '5432'),
-    name: process.env.DB_NAME || 'smc',
-    user: process.env.DB_USER || 'admin',
-    password: process.env.DB_PASSWORD || 'password',
+// Initialize performance monitoring
+const performanceMonitoring = {
+  thresholds: {
+    responseTime: 1000, // 1 second
+    memoryUsage: 100 * 1024 * 1024, // 100MB
+    cpuUsage: 80, // 80%
   },
-  redis: {
-    host: process.env.REDIS_HOST || 'localhost',
-    port: parseInt(process.env.REDIS_PORT || '6379'),
-    password: process.env.REDIS_PASSWORD,
-  },
-  storage: {
-    type: process.env.BACKUP_STORAGE || 'local',
-    path: process.env.BACKUP_PATH || '/backups',
-    bucket: process.env.BACKUP_BUCKET,
-    accessKey: process.env.BACKUP_ACCESS_KEY,
-    secretKey: process.env.BACKUP_SECRET_KEY,
-  },
-  schedule: {
-    daily: process.env.BACKUP_DAILY === 'true',
-    weekly: process.env.BACKUP_WEEKLY === 'true',
-    monthly: process.env.BACKUP_MONTHLY === 'true',
-  },
-  retention: {
-    days: parseInt(process.env.BACKUP_RETENTION_DAYS || '7'),
-    weeks: parseInt(process.env.BACKUP_RETENTION_WEEKS || '4'),
-    months: parseInt(process.env.BACKUP_RETENTION_MONTHS || '12'),
+  checkInterval: 5000, // 5 seconds
+};
+
+// Initialize error reporting
+const errorReporting = {
+  enabled: process.env.ERROR_REPORTING === 'true',
+  providers: [
+    'sentry',
+    'email',
+    'console',
+  ],
+};
+
+// Initialize health checks
+const healthChecks = {
+  endpoints: {
+    '/health': {
+      checks: ['database', 'redis', 'cache'],
+      timeout: 5000,
+    },
+    '/ready': {
+      checks: ['database', 'redis', 'cache', 'services'],
+      timeout: 10000,
+    },
   },
 };
 
-// Initialize database connection
-const databaseConnection = createConnection({
-  type: config.database.type,
-  host: config.database.host,
-  port: config.database.port,
-  database: config.database.name,
-  username: config.database.user,
-  password: config.database.password,
-});
-
-// Initialize Redis client
-const redisClient = createClient({
-  url: `redis://${config.redis.host}:${config.redis.port}`,
-  password: config.redis.password,
-});
-
 export {
-  config,
-  databaseConnection,
-  redisClient,
-  logger,
+  sentry,
+  emailTransport,
+  performanceMonitoring,
+  errorReporting,
+  healthChecks,
 };
