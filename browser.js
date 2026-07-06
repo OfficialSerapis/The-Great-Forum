@@ -1,13 +1,5 @@
-/*globals self, window */
-"use strict"
+module.exports = noop;
+module.exports.HttpsAgent = noop;
 
-/*eslint-disable @mysticatea/prettier */
-const { AbortController, AbortSignal } =
-    typeof self !== "undefined" ? self :
-    typeof window !== "undefined" ? window :
-    /* otherwise */ undefined
-/*eslint-enable @mysticatea/prettier */
-
-module.exports = AbortController
-module.exports.AbortSignal = AbortSignal
-module.exports.default = AbortController
+// Noop function for browser since native api's don't use agents.
+function noop () {}

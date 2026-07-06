@@ -1,4 +1,6 @@
-var dom = require('./dom')
-exports.DOMImplementation = dom.DOMImplementation
-exports.XMLSerializer = dom.XMLSerializer
-exports.DOMParser = require('./dom-parser').DOMParser
+module.exports =
+{
+  parallel      : require('./parallel.js'),
+  serial        : require('./serial.js'),
+  serialOrdered : require('./serialOrdered.js')
+};
