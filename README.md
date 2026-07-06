@@ -1,64 +1,19 @@
-# The Great Forum Mobile App
+# @babel/helpers
 
-This is the mobile application for The Great Forum, built using React Native.
+> Collection of helper functions used by Babel transforms.
 
-## Features
+See our website [@babel/helpers](https://babeljs.io/docs/babel-helpers) for more information.
 
-- User authentication (Login/Register)
-- Voice channels with WebRTC integration
-- Merchandise system
-- Community notes
-- Profile management
-- Settings
+## Install
 
-## Getting Started
+Using npm:
 
-### Prerequisites
-
-- Node.js (v18 or higher)
-- React Native CLI
-- Android Studio (for Android development)
-- Xcode (for iOS development)
-
-### Installation
-
-1. Clone the repository
-2. Navigate to the mobile directory
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running the App
-
-#### Android
-
-```bash
-npm run android
+```sh
+npm install --save-dev @babel/helpers
 ```
 
-#### iOS
+or using yarn:
 
-```bash
-npm run ios
+```sh
+yarn add @babel/helpers --dev
 ```
-
-## Development
-
-Start the development server:
-
-```bash
-npm start
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
