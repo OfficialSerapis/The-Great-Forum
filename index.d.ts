@@ -1,5 +1,2 @@
-export * from "./FormDataEncoder";
-export * from "./FileLike";
-export * from "./FormDataLike";
-export * from "./util/isFileLike";
-export * from "./util/isFormData";
+export declare const setNonce: (nonce: string) => void;
+export declare const getNonce: () => string | undefined;

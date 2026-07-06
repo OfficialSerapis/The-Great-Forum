@@ -1,17 +1,10 @@
 # Changelog
 
-## v.2.0.0
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-Features
+## 0.1.0 (2020-05-19)
 
-- Added stable-stringify (see documentation)
-- Support replacer
-- Support spacer
-- toJSON support without forceDecirc property
-- Improved performance
 
-Breaking changes
+### Features
 
-- Manipulating the input value in a `toJSON` function is not possible anymore in
-  all cases (see documentation)
-- Dropped support for e.g. IE8 and Node.js < 4
+* Initial implementation ([52863f4](https://github.com/cfware/get-package-type/commit/52863f4b2b7b287fe1adcd97331231a2911312dc))
