@@ -1,2 +1,11 @@
-import 'tls';
-export { a as Config, d as defineConfig } from './index-BAUrj6Ib.mjs';
+type Promisable<T> = T | Promise<T>;
+
+export type Callback = (
+	directory: string,
+	files: string[],
+) => Promisable<string | false | void>;
+
+export default function (
+	directory: string,
+	callback: Callback,
+): Promise<string | void>;

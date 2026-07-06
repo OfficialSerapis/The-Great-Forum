@@ -1,18 +1,24 @@
 {
-  "name": "eastasianwidth",
-  "version": "0.2.0",
-  "description": "Get East Asian Width from a character.",
-  "main": "eastasianwidth.js",
+  "name": "escape-html",
+  "description": "Escape string for use in HTML",
+  "version": "1.0.3",
+  "license": "MIT",
+  "keywords": [
+    "escape",
+    "html",
+    "utility"
+  ],
+  "repository": "component/escape-html",
+  "devDependencies": {
+    "benchmark": "1.0.0",
+    "beautify-benchmark": "0.2.4"
+  },
   "files": [
-    "eastasianwidth.js"
+    "LICENSE",
+    "Readme.md",
+    "index.js"
   ],
   "scripts": {
-    "test": "mocha"
-  },
-  "repository": "git://github.com/komagata/eastasianwidth.git",
-  "author": "Masaki Komagata",
-  "license": "MIT",
-  "devDependencies": {
-    "mocha": "~1.9.0"
+    "bench": "node benchmark/index.js"
   }
 }

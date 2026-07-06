@@ -1,16 +1,18 @@
-import { Polling as XHR } from "./polling";
-import { WebSocket } from "./websocket";
-import { WebTransport } from "./webtransport";
-declare const _default: {
-    polling: typeof polling;
-    websocket: typeof WebSocket;
-    webtransport: typeof WebTransport;
-};
-export default _default;
 /**
- * Polling polymorphic constructor.
- */
-declare function polling(req: any): XHR;
-declare namespace polling {
-    var upgradesTo: string[];
-}
+Escape RegExp special characters.
+
+You can also use this to escape a string that is inserted into the middle of a regex, for example, into a character class.
+
+@example
+```
+import escapeStringRegexp = require('escape-string-regexp');
+
+const escapedString = escapeStringRegexp('How much $ for a 🦄?');
+//=> 'How much \\$ for a 🦄\\?'
+
+new RegExp(escapedString);
+```
+*/
+declare const escapeStringRegexp: (string: string) => string;
+
+export = escapeStringRegexp;
