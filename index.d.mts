@@ -1,7 +1,2 @@
-import { Plugin } from 'vite';
-
-declare function viteRuntimeErrorOverlayPlugin(options?: {
-    filter?: (error: Error) => boolean;
-}): Plugin;
-
-export { viteRuntimeErrorOverlayPlugin as default };
+import 'tls';
+export { a as Config, d as defineConfig } from './index-BAUrj6Ib.mjs';

@@ -1,7 +1,16 @@
-export interface UnicodeScalarValue {
-    codePoint: number;
-    string: string;
+import { Polling as XHR } from "./polling";
+import { WebSocket } from "./websocket";
+import { WebTransport } from "./webtransport";
+declare const _default: {
+    polling: typeof polling;
+    websocket: typeof WebSocket;
+    webtransport: typeof WebTransport;
+};
+export default _default;
+/**
+ * Polling polymorphic constructor.
+ */
+declare function polling(req: any): XHR;
+declare namespace polling {
+    var upgradesTo: string[];
 }
-export declare function codePoint(typeface: string, codePoint: number): UnicodeScalarValue | undefined;
-export declare function dec(typeface: string, dec: string): UnicodeScalarValue | undefined;
-export declare function hex(typeface: string, hex: string): UnicodeScalarValue | undefined;
