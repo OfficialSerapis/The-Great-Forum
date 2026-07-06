@@ -1,16 +1,64 @@
-# Installation
-> `npm install --save @types/bson`
+# The Great Forum Mobile App
 
-# Summary
-This package contains type definitions for bson (https://github.com/mongodb/js-bson).
+This is the mobile application for The Great Forum, built using React Native.
 
-# Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/bson.
+## Features
 
-### Additional Details
- * Last updated: Thu, 29 Jul 2021 13:31:23 GMT
- * Dependencies: [@types/node](https://npmjs.com/package/@types/node)
- * Global values: none
+- User authentication (Login/Register)
+- Voice channels with WebRTC integration
+- Merchandise system
+- Community notes
+- Profile management
+- Settings
 
-# Credits
-These definitions were written by [Hiroki Horiuchi](https://github.com/horiuchi), [Federico Caselli](https://github.com/CaselIT), [Justin Grant](https://github.com/justingrant), and [Mikael Lirbank](https://github.com/lirbank).
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- React Native CLI
+- Android Studio (for Android development)
+- Xcode (for iOS development)
+
+### Installation
+
+1. Clone the repository
+2. Navigate to the mobile directory
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the App
+
+#### Android
+
+```bash
+npm run android
+```
+
+#### iOS
+
+```bash
+npm run ios
+```
+
+## Development
+
+Start the development server:
+
+```bash
+npm start
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
