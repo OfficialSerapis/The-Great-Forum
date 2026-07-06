@@ -1,19 +1,12 @@
-let Declaration = require('../declaration')
+"use strict";
+module.exports = function(Promise, INTERNAL) {
+var PromiseMap = Promise.map;
 
-class Filter extends Declaration {
-  /**
-   * Check is it Internet Explorer filter
-   */
-  check(decl) {
-    let v = decl.value
-    return (
-      !v.toLowerCase().includes('alpha(') &&
-      !v.includes('DXImageTransform.Microsoft') &&
-      !v.includes('data:image/svg+xml')
-    )
-  }
-}
+Promise.prototype.filter = function (fn, options) {
+    return PromiseMap(this, fn, options, INTERNAL);
+};
 
-Filter.names = ['filter']
-
-module.exports = Filter
+Promise.filter = function (promises, fn, options) {
+    return PromiseMap(promises, fn, options, INTERNAL);
+};
+};

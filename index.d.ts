@@ -1,16 +1,8 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-import {Identifier} from '@babel/types';
-import type {PluginObj} from '@babel/core';
-
-declare function jestHoist(): PluginObj<{
-  declareJestObjGetterIdentifier: () => Identifier;
-  jestObjGetterIdentifier?: Identifier;
-}>;
-export default jestHoist;
-
-export {};
+import { CreateLoggerOptions, Logger } from '../logger';
+import { ExtendedArray, LogTargetMock, extendArray } from './target-mock';
+declare const setupForTesting: (target?: LogTargetMock) => void;
+interface LoggerMock extends Logger {
+    readonly target: LogTargetMock;
+}
+declare const createLoggerMock: (options?: CreateLoggerOptions | undefined, target?: LogTargetMock) => LoggerMock;
+export { LogTargetMock, ExtendedArray, extendArray, setupForTesting as setup, createLoggerMock, LoggerMock };

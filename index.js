@@ -1,21 +1,14 @@
-const { defaults } = require('@istanbuljs/schema');
-const Instrumenter = require('./instrumenter');
-const programVisitor = require('./visitor');
-const readInitialCoverage = require('./read-coverage');
-
 /**
- * createInstrumenter creates a new instrumenter with the
- * supplied options.
- * @param {Object} opts - instrumenter options. See the documentation
- * for the Instrumenter class.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
-function createInstrumenter(opts) {
-    return new Instrumenter(opts);
-}
 
-module.exports = {
-    createInstrumenter,
-    programVisitor,
-    readInitialCoverage,
-    defaultOpts: defaults.instrumenter
+const jestPreset = {
+  plugins: [require.resolve('babel-plugin-jest-hoist')],
+  presets: [require.resolve('babel-preset-current-node-syntax')],
 };
+
+// @babel/core requires us to export a function
+module.exports = () => jestPreset;

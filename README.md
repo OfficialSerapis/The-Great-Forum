@@ -1,33 +1,18 @@
-# babel-plugin-jest-hoist
+base64id
+========
 
-Babel plugin to hoist `jest.disableAutomock`, `jest.enableAutomock`, `jest.unmock`, `jest.mock`, calls above `import` statements. This plugin is automatically included when using [babel-jest](https://github.com/jestjs/jest/tree/main/packages/babel-jest).
+Node.js module that generates a base64 id.
+
+Uses crypto.randomBytes when available, falls back to unsafe methods for node.js <= 0.4.
+
+To increase performance, random bytes are buffered to minimize the number of synchronous calls to crypto.randomBytes.
 
 ## Installation
 
-```sh
-$ yarn add --dev babel-plugin-jest-hoist
-```
+   $ npm install base64id
 
 ## Usage
 
-### Via `babel.config.js` (Recommended)
+   var base64id = require('base64id');
 
-```js
-module.exports = {
-  plugins: ['jest-hoist'],
-};
-```
-
-### Via CLI
-
-```sh
-$ babel --plugins jest-hoist script.js
-```
-
-### Via Node API
-
-```javascript
-require('@babel/core').transform('code', {
-  plugins: ['jest-hoist'],
-});
-```
+   var id = base64id.generateId();
