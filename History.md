@@ -1,38 +1,22 @@
-1.0.6 / 2015-02-03
+
+1.0.0 / 2015-12-14
 ==================
 
-* use `npm test` instead of `make test` to run tests
-* clearer assertion messages when checking input
+  * Merge pull request #12 from kasicka/master
+  * Add license text
 
-
-1.0.5 / 2014-09-05
+0.1.0 / 2014-10-17
 ==================
 
-* add license to package.json
+ * adds `.fluent()` to api
 
-1.0.4 / 2014-06-25
+0.0.3 / 2014-01-13
 ==================
 
- * corrected avoidance of timing attacks (thanks @tenbits!)
+ * fix receiver for .method()
 
-1.0.3 / 2014-01-28
+0.0.2 / 2014-01-13
 ==================
 
- * [incorrect] fix for timing attacks
-
-1.0.2 / 2014-01-28
-==================
-
- * fix missing repository warning
- * fix typo in test
-
-1.0.1 / 2013-04-15
-==================
-
-  * Revert "Changed underlying HMAC algo. to sha512."
-  * Revert "Fix for timing attacks on MAC verification."
-
-0.0.1 / 2010-01-03
-==================
-
-  * Initial release
+ * Object.defineProperty() sucks
+ * Initial commit
