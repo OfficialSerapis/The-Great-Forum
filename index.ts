@@ -1,2 +1,2 @@
-export * from './formatting';
-export * from './editor.ts';
+export * from './class-validator';
+export * from './types';

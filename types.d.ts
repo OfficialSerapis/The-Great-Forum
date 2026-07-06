@@ -1,22 +1,5 @@
-export interface ProcessCov {
-    result: ScriptCov[];
-}
-export interface ScriptCov {
-    scriptId: string;
-    url: string;
-    functions: FunctionCov[];
-}
-export interface FunctionCov {
-    functionName: string;
-    ranges: RangeCov[];
-    isBlockCoverage: boolean;
-}
-export interface Range {
-    readonly start: number;
-    readonly end: number;
-}
-export interface RangeCov {
-    startOffset: number;
-    endOffset: number;
-    count: number;
-}
+import * as Ajv from 'ajv';
+import { FieldValues, ResolverOptions, ResolverResult } from 'react-hook-form';
+export type Resolver = <T>(schema: Ajv.JSONSchemaType<T>, schemaOptions?: Ajv.Options, factoryOptions?: {
+    mode?: 'async' | 'sync';
+}) => <TFieldValues extends FieldValues, TContext>(values: TFieldValues, context: TContext | undefined, options: ResolverOptions<TFieldValues>) => Promise<ResolverResult<TFieldValues>>;

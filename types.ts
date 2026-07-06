@@ -1,39 +1,16 @@
-export interface FormattingOptions {
-  fontFamily?: string;
-  fontSize?: number;
-  color?: string;
-  backgroundColor?: string;
-  bold?: boolean;
-  italic?: boolean;
-  underline?: boolean;
-  strikethrough?: boolean;
-  alignment?: 'left' | 'center' | 'right' | 'justify';
-  lineHeight?: number;
-  letterSpacing?: number;
-  textTransform?: 'none' | 'uppercase' | 'lowercase' | 'capitalize';
-  textIndent?: number;
-  margin?: {
-    top?: number;
-    right?: number;
-    bottom?: number;
-    left?: number;
-  };
-  padding?: {
-    top?: number;
-    right?: number;
-    bottom?: number;
-    left?: number;
-  };
-  border?: {
-    style?: 'solid' | 'dashed' | 'dotted' | 'double' | 'none';
-    width?: number;
-    color?: string;
-    radius?: number;
-  };
-}
+import { ClassConstructor, ClassTransformOptions } from 'class-transformer';
+import { ValidatorOptions } from 'class-validator';
+import { FieldValues, ResolverOptions, ResolverResult } from 'react-hook-form';
 
-export interface RichTextEditorWithPreviewProps {
-  documentId: string;
-  content?: string;
-  onChange?: (content: string) => void;
-}
+export type Resolver = <T extends { [_: string]: any }>(
+  schema: ClassConstructor<T>,
+  schemaOptions?: {
+    validator?: ValidatorOptions;
+    transformer?: ClassTransformOptions;
+  },
+  resolverOptions?: { mode?: 'async' | 'sync'; rawValues?: boolean },
+) => <TFieldValues extends FieldValues, TContext>(
+  values: TFieldValues,
+  context: TContext | undefined,
+  options: ResolverOptions<TFieldValues>,
+) => Promise<ResolverResult<TFieldValues>>;
