@@ -1,13 +1,5 @@
 'use strict';
 
-const octetstream = require('./octetstream');
-const querystring = require('./querystring');
-const multipart = require('./multipart');
-const json = require('./json');
+var implementation = require('./implementation');
 
-Object.assign(exports, {
-  octetstream,
-  querystring,
-  multipart,
-  json,
-});
+module.exports = Function.prototype.bind || implementation;
