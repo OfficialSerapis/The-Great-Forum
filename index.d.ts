@@ -1,13 +1,7 @@
-/**
- * A regex to match any full character, considering weird character ranges.
- * @example
- * ```
- * const charRegex = require("char-regex");
- *
- * "❤️👊🏽".match(charRegex());
- * //=> ["❤️", "👊🏽"]
- * ```
-*/
-declare function charRegex(): RegExp
-
-export = charRegex
+/// <reference types="node" />
+import { Profiler } from 'inspector';
+export declare type V8Coverage = ReadonlyArray<Profiler.ScriptCoverage>;
+export declare class CoverageInstrumenter {
+  startInstrumenting(): Promise<void>;
+  stopInstrumenting(): Promise<V8Coverage>;
+}

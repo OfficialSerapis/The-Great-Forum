@@ -1,5 +1,14 @@
-module.exports = noop;
-module.exports.HttpsAgent = noop;
+module.exports = colorSupport({ alwaysReturn: true }, colorSupport)
 
-// Noop function for browser since native api's don't use agents.
-function noop () {}
+function colorSupport(options, obj) {
+  obj = obj || {}
+  options = options || {}
+  obj.level = 0
+  obj.hasBasic = false
+  obj.has256 = false
+  obj.has16m = false
+  if (!options.alwaysReturn) {
+    return false
+  }
+  return obj
+}

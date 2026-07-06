@@ -1,3 +1,3 @@
-export declare namespace ValueClone {
-    function Clone<T extends unknown>(value: T): T;
-}
+import { PlainColorObject } from "./color.js";
+
+export default function clone (color: PlainColorObject): PlainColorObject;
