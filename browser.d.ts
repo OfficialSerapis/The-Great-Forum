@@ -1,12 +1,10 @@
-/**
- * This is a browser shim that provides the same functional interface
- * as the main node export, but it does nothing.
- * @module
- */
-import type { Handler } from './index.js';
-export declare const onExit: (cb: Handler, opts: {
-    alwaysLast?: boolean;
-}) => () => void;
-export declare const load: () => void;
-export declare const unload: () => void;
-//# sourceMappingURL=browser.d.ts.map
+export declare const FormData: {
+    new (form?: HTMLFormElement | undefined): FormData;
+    prototype: FormData;
+}, Blob: {
+    new (blobParts?: BlobPart[] | undefined, options?: BlobPropertyBag | undefined): Blob;
+    prototype: Blob;
+}, File: {
+    new (fileBits: BlobPart[], fileName: string, options?: FilePropertyBag | undefined): File;
+    prototype: File;
+};

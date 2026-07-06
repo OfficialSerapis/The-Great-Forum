@@ -1,5 +1,13 @@
-export * from "./FormDataEncoder.js";
-export * from "./FileLike.js";
-export * from "./FormDataLike.js";
-export * from "./util/isFileLike.js";
-export * from "./util/isFormData.js";
+'use strict';
+
+const octetstream = require('./octetstream');
+const querystring = require('./querystring');
+const multipart = require('./multipart');
+const json = require('./json');
+
+Object.assign(exports, {
+  octetstream,
+  querystring,
+  multipart,
+  json,
+});
