@@ -1,4 +1,4 @@
-// Definitions by: Adam Thompson-Sharpe <https://github.com/MysteryBlokHed>
-// Minimum TypeScript Version: 4.1
-export { default } from "./index.js";
-export * from "./index.js";
+type Child = string | Node | null | undefined | readonly Child[]
+
+export default function crelt(elt: string | HTMLElement, attrs: {[attr: string]: any}, ...children: Child[]): HTMLElement
+export default function crelt(elt: string | HTMLElement, ...children: Child[]): HTMLElement

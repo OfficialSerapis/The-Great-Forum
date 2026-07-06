@@ -1,11 +1,11 @@
-A JSON with color names and its values. Based on http://dev.w3.org/csswg/css-color/#named-colors.
+# create-jest
 
-[![NPM](https://nodei.co/npm/color-name.png?mini=true)](https://nodei.co/npm/color-name/)
+> Getting started with Jest with a single command
 
-
-```js
-var colors = require('color-name');
-colors.red //[255,0,0]
+```bash
+npm init jest@latest
+# Or for Yarn
+yarn create jest
+# Or for pnpm
+pnpm create jest
 ```
-
-<a href="LICENSE"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/MIT_logo.svg" width="120"/></a>
