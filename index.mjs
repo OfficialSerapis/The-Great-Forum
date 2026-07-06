@@ -1,14 +1,13 @@
-// Bootstrap cliui with ESM dependencies:
-import { cliui } from './build/lib/index.js'
-
-import stringWidth from 'string-width'
-import stripAnsi from 'strip-ansi'
-import wrap from 'wrap-ansi'
-
-export default function ui (opts) {
-  return cliui(opts, {
-    stringWidth,
-    stripAnsi,
-    wrap
-  })
+// packages/core/primitive/src/primitive.tsx
+function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
+  return function handleEvent(event) {
+    originalEventHandler?.(event);
+    if (checkForDefaultPrevented === false || !event.defaultPrevented) {
+      return ourEventHandler?.(event);
+    }
+  };
 }
+export {
+  composeEventHandlers
+};
+//# sourceMappingURL=index.mjs.map
