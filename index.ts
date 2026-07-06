@@ -1,2 +1,1 @@
-export * from './io-ts';
-export * from './types';
+export * from 'prosemirror-dropcursor'

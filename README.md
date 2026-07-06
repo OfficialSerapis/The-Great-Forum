@@ -1,7 +1,23 @@
-# @swc/couter
+# abbrev-js
 
-Download counter for swc packages.
+Just like [ruby's Abbrev](http://apidock.com/ruby/Abbrev).
 
-This package does not contain any code. It is used solely to track number of downloads of npm packages like `@swc/core` and `@next/swc`. If you are building a huge project using SWC, please consider depending on this package. It will not add any code to your bundle, but it will help us determine the number of users of SWC.
+Usage:
 
-Counting is done by npm, just like other packages.
+    var abbrev = require("abbrev");
+    abbrev("foo", "fool", "folding", "flop");
+    
+    // returns:
+    { fl: 'flop'
+    , flo: 'flop'
+    , flop: 'flop'
+    , fol: 'folding'
+    , fold: 'folding'
+    , foldi: 'folding'
+    , foldin: 'folding'
+    , folding: 'folding'
+    , foo: 'foo'
+    , fool: 'fool'
+    }
+
+This is handy for command-line scripts, or other cases where you want to be able to accept shorthands.
