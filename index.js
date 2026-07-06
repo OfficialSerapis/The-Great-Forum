@@ -1,3 +1,4 @@
-export {default as color, rgb, hsl} from "./color.js";
-export {default as lab, hcl, lch, gray} from "./lab.js";
-export {default as cubehelix} from "./cubehelix.js";
+export {default as timeFormatDefaultLocale, timeFormat, timeParse, utcFormat, utcParse} from "./defaultLocale.js";
+export {default as timeFormatLocale} from "./locale.js";
+export {default as isoFormat} from "./isoFormat.js";
+export {default as isoParse} from "./isoParse.js";

@@ -1,4 +1,7 @@
-var array = Array.prototype;
+export var slice = Array.prototype.slice;
 
-export var slice = array.slice;
-export var map = array.map;
+export default function(x) {
+  return typeof x === "object" && "length" in x
+    ? x // Array, TypedArray, NodeList, array-like
+    : Array.from(x); // Map, Set, iterable, string, or anything else
+}
