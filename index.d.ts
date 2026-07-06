@@ -1,4 +1,5 @@
-declare module 'fast-deep-equal' {
-    const equal: (a: any, b: any) => boolean;
-    export = equal;
-}
+export * from "./FormDataEncoder";
+export * from "./FileLike";
+export * from "./FormDataLike";
+export * from "./util/isFileLike";
+export * from "./util/isFormData";
