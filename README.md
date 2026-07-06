@@ -1,4 +1,3 @@
-# @floating-ui/utils
+# `@next/swc-win32-x64-msvc`
 
-Utility functions shared across Floating UI packages. You may use these
-functions in your own projects, but are subject to breaking changes.
+This is the **x86_64-pc-windows-msvc** binary for `@next/swc`

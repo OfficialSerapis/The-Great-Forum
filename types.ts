@@ -1,16 +1,18 @@
-import { ClassConstructor, ClassTransformOptions } from 'class-transformer';
-import { ValidatorOptions } from 'class-validator';
-import { FieldValues, ResolverOptions, ResolverResult } from 'react-hook-form';
+import * as t from 'io-ts';
+import {
+  FieldError,
+  FieldValues,
+  ResolverOptions,
+  ResolverResult,
+} from 'react-hook-form';
 
-export type Resolver = <T extends { [_: string]: any }>(
-  schema: ClassConstructor<T>,
-  schemaOptions?: {
-    validator?: ValidatorOptions;
-    transformer?: ClassTransformOptions;
-  },
-  resolverOptions?: { mode?: 'async' | 'sync'; rawValues?: boolean },
-) => <TFieldValues extends FieldValues, TContext>(
+export type Resolver = <T, TFieldValues extends FieldValues, TContext>(
+  codec: t.Decoder<FieldValues, T>,
+) => (
   values: TFieldValues,
-  context: TContext | undefined,
+  _context: TContext | undefined,
   options: ResolverOptions<TFieldValues>,
-) => Promise<ResolverResult<TFieldValues>>;
+) => ResolverResult<TFieldValues>;
+
+export type ErrorObject = Record<string, FieldError>;
+export type FieldErrorWithPath = FieldError & { path: string };

@@ -1,31 +1,17 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.stat = exports.readFile = void 0;
-function _fs() {
-  const data = require("fs");
-  _fs = function () {
-    return data;
-  };
-  return data;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createFileSystemAdapter = exports.FILE_SYSTEM_ADAPTER = void 0;
+const fs = require("fs");
+exports.FILE_SYSTEM_ADAPTER = {
+    lstat: fs.lstat,
+    stat: fs.stat,
+    lstatSync: fs.lstatSync,
+    statSync: fs.statSync
+};
+function createFileSystemAdapter(fsMethods) {
+    if (fsMethods === undefined) {
+        return exports.FILE_SYSTEM_ADAPTER;
+    }
+    return Object.assign(Object.assign({}, exports.FILE_SYSTEM_ADAPTER), fsMethods);
 }
-function _gensync() {
-  const data = require("gensync");
-  _gensync = function () {
-    return data;
-  };
-  return data;
-}
-const readFile = exports.readFile = _gensync()({
-  sync: _fs().readFileSync,
-  errback: _fs().readFile
-});
-const stat = exports.stat = _gensync()({
-  sync: _fs().statSync,
-  errback: _fs().stat
-});
-0 && 0;
-
-//# sourceMappingURL=fs.js.map
+exports.createFileSystemAdapter = createFileSystemAdapter;
