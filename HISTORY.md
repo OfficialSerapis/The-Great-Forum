@@ -1,14 +1,9 @@
-1.0.2 / 2018-01-21
+1.0.1 / 2021-11-14
 ==================
 
-  * Fix encoding `%` as last character
+  * pref: enable strict mode
 
-1.0.1 / 2016-06-09
-==================
-
-  * Fix encoding unpaired surrogates at start/end of string
-
-1.0.0 / 2016-06-08
+1.0.0 / 2018-07-09
 ==================
 
   * Initial release
