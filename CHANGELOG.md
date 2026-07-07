@@ -1,15 +1,11 @@
-# Changers Lorgs!
+## Unreleased
 
-## 1.0
 
-Full rewrite.  Essentially a brand new module.
+## [1.0.2][] – 2019-11-10
 
-- Return a promise instead of taking a callback.
-- Use native `fs.mkdir(path, { recursive: true })` when available.
-- Drop support for outdated Node.js versions.  (Technically still works on
-  Node.js v8, but only 10 and above are officially supported.)
+### Fixed
 
-## 0.x
+- A negative sign is no longer stripped by mistake for numbers of the form −0.000…00(d) where the number of zeros after the decimal point is 2 mod 4.
 
-Original and most widely used recursive directory creation implementation
-in JavaScript, dating back to 2010.
+
+[1.0.2]: https://github.com/charmander/pg-numeric/compare/v1.0.1...v1.0.2

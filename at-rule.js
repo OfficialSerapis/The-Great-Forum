@@ -1,35 +1,25 @@
-let Prefixer = require('./prefixer')
+'use strict'
 
-class AtRule extends Prefixer {
-  /**
-   * Clone and add prefixes for at-rule
-   */
-  add(rule, prefix) {
-    let prefixed = prefix + rule.name
+let Container = require('./container')
 
-    let already = rule.parent.some(
-      i => i.name === prefixed && i.params === rule.params
-    )
-    if (already) {
-      return undefined
-    }
-
-    let cloned = this.clone(rule, { name: prefixed })
-    return rule.parent.insertBefore(rule, cloned)
+class AtRule extends Container {
+  constructor(defaults) {
+    super(defaults)
+    this.type = 'atrule'
   }
 
-  /**
-   * Clone node with prefixes
-   */
-  process(node) {
-    let parent = this.parentPrefix(node)
+  append(...children) {
+    if (!this.proxyOf.nodes) this.nodes = []
+    return super.append(...children)
+  }
 
-    for (let prefix of this.prefixes) {
-      if (!parent || parent === prefix) {
-        this.add(node, prefix)
-      }
-    }
+  prepend(...children) {
+    if (!this.proxyOf.nodes) this.nodes = []
+    return super.prepend(...children)
   }
 }
 
 module.exports = AtRule
+AtRule.default = AtRule
+
+Container.registerAtRule(AtRule)

@@ -1,12 +1,21 @@
-# obuf - Offset buffer implementation.
+# picocolors
 
-Byte buffer specialized for data in chunks with special cases for dropping
-bytes in the front, merging bytes in to various integer types and
-abandoning buffer without penalty for previous chunk merges.
+The tiniest and the fastest library for terminal output formatting with ANSI colors.
 
-Used in spyd-transport, part of spdy support for http2.
+```javascript
+import pc from "picocolors"
 
-This software is licensed under the MIT License.
+console.log(
+  pc.green(`How are ${pc.italic(`you`)} doing?`)
+)
+```
 
-By Fedor Indutny, 2015.
+- **No dependencies.**
+- **14 times** smaller and **2 times** faster than chalk.
+- Used by popular tools like PostCSS, SVGO, Stylelint, and Browserslist.
+- Node.js v6+ & browsers support. Support for both CJS and ESM projects.
+- TypeScript type declarations included.
+- [`NO_COLOR`](https://no-color.org/) friendly.
 
+## Docs
+Read **[full docs](https://github.com/alexeyraspopov/picocolors#readme)** on GitHub.

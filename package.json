@@ -1,30 +1,25 @@
 {
-  "name": "path-to-regexp",
-  "description": "Express style path to RegExp utility",
-  "version": "0.1.12",
+  "name": "picocolors",
+  "version": "1.1.1",
+  "main": "./picocolors.js",
+  "types": "./picocolors.d.ts",
+  "browser": {
+    "./picocolors.js": "./picocolors.browser.js"
+  },
+  "sideEffects": false,
+  "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
   "files": [
-    "index.js",
-    "LICENSE"
+    "picocolors.*",
+    "types.d.ts"
   ],
-  "scripts": {
-    "test": "istanbul cover _mocha -- -R spec"
-  },
   "keywords": [
-    "express",
-    "regexp"
+    "terminal",
+    "colors",
+    "formatting",
+    "cli",
+    "console"
   ],
-  "component": {
-    "scripts": {
-      "path-to-regexp": "index.js"
-    }
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pillarjs/path-to-regexp.git"
-  },
-  "devDependencies": {
-    "mocha": "^1.17.1",
-    "istanbul": "^0.2.6"
-  }
+  "author": "Alexey Raspopov",
+  "repository": "alexeyraspopov/picocolors",
+  "license": "ISC"
 }
