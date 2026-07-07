@@ -1,27 +1,18 @@
-# jest-leak-detector
+# lodash.once v4.1.1
 
-Module for verifying whether an object has been garbage collected or not.
+The [lodash](https://lodash.com/) method `_.once` exported as a [Node.js](https://nodejs.org/) module.
 
-Internally creates a weak reference to the object, and forces garbage collection to happen. If the reference is gone, it meant no one else was pointing to the object.
+## Installation
 
-## Example
-
-```javascript
-(async function () {
-  let reference = {};
-  let isLeaking;
-
-  const detector = new LeakDetector(reference);
-
-  // Reference is held in memory.
-  isLeaking = await detector.isLeaking();
-  console.log(isLeaking); // true
-
-  // We destroy the only reference to the object.
-  reference = null;
-
-  // Reference is gone.
-  isLeaking = await detector.isLeaking();
-  console.log(isLeaking); // false
-})();
+Using npm:
+```bash
+$ {sudo -H} npm i -g npm
+$ npm i --save lodash.once
 ```
+
+In Node.js:
+```js
+var once = require('lodash.once');
+```
+
+See the [documentation](https://lodash.com/docs#once) or [package source](https://github.com/lodash/lodash/blob/4.1.1-npm-packages/lodash.once) for more details.

@@ -1,22 +1,18 @@
-/*global exports*/
-var SignStream = require('./lib/sign-stream');
-var VerifyStream = require('./lib/verify-stream');
+exports.Parser = require("./lib/parser").Parser;
+exports.rules = require("./lib/rules");
+exports.errors = require("./lib/errors");
+exports.results = require("./lib/parsing-results");
+exports.StringSource = require("./lib/StringSource");
+exports.Token = require("./lib/Token");
+exports.bottomUp = require("./lib/bottom-up");
+exports.RegexTokeniser = require("./lib/regex-tokeniser").RegexTokeniser;
 
-var ALGORITHMS = [
-  'HS256', 'HS384', 'HS512',
-  'RS256', 'RS384', 'RS512',
-  'PS256', 'PS384', 'PS512',
-  'ES256', 'ES384', 'ES512'
-];
-
-exports.ALGORITHMS = ALGORITHMS;
-exports.sign = SignStream.sign;
-exports.verify = VerifyStream.verify;
-exports.decode = VerifyStream.decode;
-exports.isValid = VerifyStream.isValid;
-exports.createSign = function createSign(opts) {
-  return new SignStream(opts);
-};
-exports.createVerify = function createVerify(opts) {
-  return new VerifyStream(opts);
+exports.rule = function(ruleBuilder) {
+    var rule;
+    return function(input) {
+        if (!rule) {
+            rule = ruleBuilder();
+        }
+        return rule(input);
+    };
 };
