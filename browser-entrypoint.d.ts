@@ -1,3 +1,2 @@
-import { Socket } from "./socket.js";
-declare const _default: (uri: any, opts: any) => Socket;
-export default _default;
+import { io } from "./index.js";
+export default io;

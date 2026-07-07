@@ -1,2 +1,14 @@
-export { SocketId, PrivateSessionId, Room, BroadcastFlags, BroadcastOptions, Session, Adapter, SessionAwareAdapter, } from "./in-memory-adapter";
-export { ClusterAdapter, ClusterAdapterWithHeartbeat, ClusterAdapterOptions, ClusterMessage, ClusterResponse, MessageType, ServerId, Offset, } from "./cluster-adapter";
+/**
+Strip UTF-8 [byte order mark](https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8) (BOM) from a string.
+
+@example
+```
+import stripBom = require('strip-bom');
+
+stripBom('\uFEFFunicorn');
+//=> 'unicorn'
+```
+*/
+declare function stripBom(string: string): string;
+
+export = stripBom;

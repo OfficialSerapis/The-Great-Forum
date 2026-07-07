@@ -1,34 +1,29 @@
-# shebang-command [![Build Status](https://travis-ci.org/kevva/shebang-command.svg?branch=master)](https://travis-ci.org/kevva/shebang-command)
+# escape-string-regexp [![Build Status](https://travis-ci.org/sindresorhus/escape-string-regexp.svg?branch=master)](https://travis-ci.org/sindresorhus/escape-string-regexp)
 
-> Get the command from a shebang
+> Escape RegExp special characters
 
 
 ## Install
 
 ```
-$ npm install shebang-command
+$ npm install escape-string-regexp
 ```
 
 
 ## Usage
 
 ```js
-const shebangCommand = require('shebang-command');
+const escapeStringRegexp = require('escape-string-regexp');
 
-shebangCommand('#!/usr/bin/env node');
-//=> 'node'
+const escapedString = escapeStringRegexp('How much $ for a 🦄?');
+//=> 'How much \\$ for a 🦄\\?'
 
-shebangCommand('#!/bin/bash');
-//=> 'bash'
+new RegExp(escapedString);
 ```
 
+You can also use this to escape a string that is inserted into the middle of a regex, for example, into a character class.
 
-## API
 
-### shebangCommand(string)
+## License
 
-#### string
-
-Type: `string`
-
-String containing a shebang.
+MIT © [Sindre Sorhus](https://sindresorhus.com)
