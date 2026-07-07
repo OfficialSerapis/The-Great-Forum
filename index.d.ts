@@ -1,24 +1,20 @@
-declare const isGeneratorFn: {
-	/**
-	Check if something is a generator function.
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+export declare const escapePathForRegex: (dir: string) => string;
 
-	@example
-	```
-	import isGeneratorFn = require('is-generator-fn');
+export declare const escapeStrForRegex: (string: string) => string;
 
-	isGeneratorFn(function * () {});
-	//=> true
+export declare const replacePathSepForRegex: (string: string) => string;
 
-	isGeneratorFn(function () {});
-	//=> false
-	```
-	*/
-	(value: unknown): value is GeneratorFunction;
-
-	// TODO: Remove this for the next major release, refactor the whole definition to:
-	// declare function isGeneratorFn(value: unknown): value is GeneratorFunction;
-	// export = isGeneratorFn;
-	default: typeof isGeneratorFn;
-};
-
-export = isGeneratorFn;
+export {};

@@ -1,17 +1,27 @@
-### Jake -- the JavaScript build tool for Node.js
+# jest-leak-detector
 
-[![Build Status](https://travis-ci.org/jakejs/jake.svg?branch=master)](https://travis-ci.org/jakejs/jake)
+Module for verifying whether an object has been garbage collected or not.
 
-Documentation site at [http://jakejs.com](http://jakejs.com/)
+Internally creates a weak reference to the object, and forces garbage collection to happen. If the reference is gone, it meant no one else was pointing to the object.
 
-### Contributing
-1. [Install node](http://nodejs.org/#download).
-2. Clone this repository `$ git clone git@github.com:jakejs/jake.git`.
-3. Install dependencies `$ npm install`.
-4. Run tests with `$ npm test`.
-5. Start Hacking!
+## Example
 
-### License
+```javascript
+(async function () {
+  let reference = {};
+  let isLeaking;
 
-Licensed under the Apache License, Version 2.0
-(<http://www.apache.org/licenses/LICENSE-2.0>)
+  const detector = new LeakDetector(reference);
+
+  // Reference is held in memory.
+  isLeaking = await detector.isLeaking();
+  console.log(isLeaking); // true
+
+  // We destroy the only reference to the object.
+  reference = null;
+
+  // Reference is gone.
+  isLeaking = await detector.isLeaking();
+  console.log(isLeaking); // false
+})();
+```
