@@ -1,22 +1,27 @@
-"use strict";
+'use strict';
 
-// Update this array if you add/rename/remove files in this directory.
-// We support Browserify by skipping automatic module discovery and requiring modules directly.
-var modules = [
-    require("./internal"),
-    require("./utf16"),
-    require("./utf7"),
-    require("./sbcs-codec"),
-    require("./sbcs-data"),
-    require("./sbcs-data-generated"),
-    require("./dbcs-codec"),
-    require("./dbcs-data"),
-];
+var callBound = require('call-bound');
 
-// Put all encoding/alias/codec definitions to single object and export it. 
-for (var i = 0; i < modules.length; i++) {
-    var module = modules[i];
-    for (var enc in module)
-        if (Object.prototype.hasOwnProperty.call(module, enc))
-            exports[enc] = module[enc];
-}
+var getDay = callBound('Date.prototype.getDay');
+/** @type {import('.')} */
+var tryDateObject = function tryDateGetDayCall(value) {
+	try {
+		getDay(value);
+		return true;
+	} catch (e) {
+		return false;
+	}
+};
+
+/** @type {(value: unknown) => string} */
+var toStr = callBound('Object.prototype.toString');
+var dateClass = '[object Date]';
+var hasToStringTag = require('has-tostringtag/shams')();
+
+/** @type {import('.')} */
+module.exports = function isDateObject(value) {
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+	return hasToStringTag ? tryDateObject(value) : toStr(value) === dateClass;
+};

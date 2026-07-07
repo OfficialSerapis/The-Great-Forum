@@ -1,17 +1,17 @@
 /**
-Let a globally installed package use a locally installed version of itself if available.
-
-@param filePath - The absolute file path to the main file of the package.
+Check if a file path is a binary file.
 
 @example
 ```
-import importLocal from 'import-local';
+import isBinaryPath = require('is-binary-path');
 
-if (importLocal(import.meta.url)) {
-	console.log('Using local version of this package');
-} else {
-	// Code for both global and local version here…
-}
+isBinaryPath('source/unicorn.png');
+//=> true
+
+isBinaryPath('source/unicorn.txt');
+//=> false
 ```
 */
-export default function importLocal(filePath: string): boolean | undefined | unknown;
+declare function isBinaryPath(filePath: string): boolean;
+
+export = isBinaryPath;

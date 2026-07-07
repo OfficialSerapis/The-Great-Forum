@@ -1,9 +1,5 @@
-support
-test
-examples
-example
-*.sock
-dist
-yarn.lock
-coverage
-bower.json
+/coverage/
+/test.js
+/test/
+*.sw[a-p]
+/node_modules/
