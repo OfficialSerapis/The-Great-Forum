@@ -1,15 +1,7 @@
-# Security Policy
+# Security issue reporting & disclosure process
 
-## Supported Versions
+If you feel you have found a security issue or concern with Helmet, please reach out to the maintainers.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Contact Evan Hahn at <me@evanhahn.com> or Adam Baldwin at <adam@npmjs.com>. Evan Hahn [can also be reached in other ways](https://evanhahn.com/contact).
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| < 1.0   | :x:                |
-
-## Reporting a Vulnerability
-
-Please report all vulnerabilities at [https://github.com/mcollina/fastq/security](https://github.com/mcollina/fastq/security).
+We will try to communicate in a timely manner and address your concerns.

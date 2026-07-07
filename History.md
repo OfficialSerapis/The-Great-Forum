@@ -1,22 +1,25 @@
 
-1.0.0 / 2015-12-14
+1.2.1 / 2017-05-19
 ==================
 
-  * Merge pull request #12 from kasicka/master
-  * Add license text
+  * fix: package.json to reduce vulnerabilities (#3)
 
-0.1.0 / 2014-10-17
+1.2.0 / 2016-05-21
 ==================
 
- * adds `.fluent()` to api
+  * feat: warn with stack
 
-0.0.3 / 2014-01-13
+1.1.0 / 2016-04-04
 ==================
 
- * fix receiver for .method()
+  * deps: upgrade ms to 0.7.0
 
-0.0.2 / 2014-01-13
+1.0.1 / 2014-12-31
 ==================
 
- * Object.defineProperty() sucks
- * Initial commit
+  * feat(index.js): warn when result is undefined
+
+1.0.0 / 2014-08-14
+==================
+
+  * init

@@ -1,8 +1,22 @@
-'use strict';
+"use strict";
 
-module.exports = (flag, argv = process.argv) => {
-	const prefix = flag.startsWith('-') ? '' : (flag.length === 1 ? '-' : '--');
-	const position = argv.indexOf(prefix + flag);
-	const terminatorPosition = argv.indexOf('--');
-	return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
-};
+// Update this array if you add/rename/remove files in this directory.
+// We support Browserify by skipping automatic module discovery and requiring modules directly.
+var modules = [
+    require("./internal"),
+    require("./utf16"),
+    require("./utf7"),
+    require("./sbcs-codec"),
+    require("./sbcs-data"),
+    require("./sbcs-data-generated"),
+    require("./dbcs-codec"),
+    require("./dbcs-data"),
+];
+
+// Put all encoding/alias/codec definitions to single object and export it. 
+for (var i = 0; i < modules.length; i++) {
+    var module = modules[i];
+    for (var enc in module)
+        if (Object.prototype.hasOwnProperty.call(module, enc))
+            exports[enc] = module[enc];
+}
