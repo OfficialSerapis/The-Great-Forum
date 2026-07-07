@@ -1,11 +1,12 @@
-let objectify = require('./objectifier')
-let parse = require('./parser')
-let async = require('./async')
-let sync = require('./sync')
+'use strict';
 
 module.exports = {
-  objectify,
-  parse,
-  async,
-  sync
-}
+  action: require('./action'),
+  clear: require('./clear'),
+  style: require('./style'),
+  strip: require('./strip'),
+  figures: require('./figures'),
+  lines: require('./lines'),
+  wrap: require('./wrap'),
+  entriesToDisplay: require('./entriesToDisplay')
+};

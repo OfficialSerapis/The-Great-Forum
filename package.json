@@ -1,25 +1,25 @@
 {
-  "name": "picocolors",
-  "version": "1.1.1",
-  "main": "./picocolors.js",
-  "types": "./picocolors.d.ts",
-  "browser": {
-    "./picocolors.js": "./picocolors.browser.js"
-  },
-  "sideEffects": false,
-  "description": "The tiniest and the fastest library for terminal output formatting with ANSI colors",
+  "name": "process-nextick-args",
+  "version": "2.0.1",
+  "description": "process.nextTick but always with args",
+  "main": "index.js",
   "files": [
-    "picocolors.*",
-    "types.d.ts"
+    "index.js"
   ],
-  "keywords": [
-    "terminal",
-    "colors",
-    "formatting",
-    "cli",
-    "console"
-  ],
-  "author": "Alexey Raspopov",
-  "repository": "alexeyraspopov/picocolors",
-  "license": "ISC"
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calvinmetcalf/process-nextick-args.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calvinmetcalf/process-nextick-args/issues"
+  },
+  "homepage": "https://github.com/calvinmetcalf/process-nextick-args",
+  "devDependencies": {
+    "tap": "~0.2.6"
+  }
 }

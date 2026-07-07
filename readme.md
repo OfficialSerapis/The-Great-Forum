@@ -1,34 +1,18 @@
-# postgres-bytea [![Build Status](https://travis-ci.org/bendrucker/postgres-bytea.svg?branch=master)](https://travis-ci.org/bendrucker/postgres-bytea)
+process-nextick-args
+=====
 
-> Postgres bytea parser
+[![Build Status](https://travis-ci.org/calvinmetcalf/process-nextick-args.svg?branch=master)](https://travis-ci.org/calvinmetcalf/process-nextick-args)
 
-
-## Install
-
-```
-$ npm install --save postgres-bytea
+```bash
+npm install --save process-nextick-args
 ```
 
-
-## Usage
+Always be able to pass arguments to process.nextTick, no matter the platform
 
 ```js
-var bytea = require('postgres-bytea');
-bytea('\\000\\100\\200')
-//=> buffer
+var pna = require('process-nextick-args');
+
+pna.nextTick(function (a, b, c) {
+  console.log(a, b, c);
+}, 'step', 3,  'profit');
 ```
-
-## API
-
-#### `bytea(input)` -> `buffer`
-
-##### input
-
-*Required*  
-Type: `string`
-
-A Postgres bytea binary string.
-
-## License
-
-MIT © [Ben Drucker](http://bendrucker.me)

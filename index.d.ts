@@ -1,4 +1,21 @@
+declare namespace PostgresInterval {
+  export interface IPostgresInterval {
+    years: number;
+    months: number;
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    milliseconds: number;
 
-export function parse(source: string): string[];
-export function parse<T>(source: string, transform: (value: string) => T): T[];
+    toPostgres(): string;
 
+    toISO(): string;
+    toISOString(): string;
+    toISOStringShort(): string;
+  }
+}
+
+declare function PostgresInterval(raw: string): PostgresInterval.IPostgresInterval;
+
+export = PostgresInterval;
