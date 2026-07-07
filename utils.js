@@ -1,9 +1,20 @@
-'use strict'
+"use strict";
 
-const useLegacyCrypto = parseInt(process.versions && process.versions.node && process.versions.node.split('.')[0]) < 15
-if (useLegacyCrypto) {
-  // We are on an old version of Node.js that requires legacy crypto utilities.
-  module.exports = require('./utils-legacy')
-} else {
-  module.exports = require('./utils-webcrypto')
-}
+module.exports.mixin = function mixin(target, source) {
+  const keys = Object.getOwnPropertyNames(source);
+  for (let i = 0; i < keys.length; ++i) {
+    Object.defineProperty(target, keys[i], Object.getOwnPropertyDescriptor(source, keys[i]));
+  }
+};
+
+module.exports.wrapperSymbol = Symbol("wrapper");
+module.exports.implSymbol = Symbol("impl");
+
+module.exports.wrapperForImpl = function (impl) {
+  return impl[module.exports.wrapperSymbol];
+};
+
+module.exports.implForWrapper = function (wrapper) {
+  return wrapper[module.exports.implSymbol];
+};
+

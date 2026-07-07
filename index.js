@@ -1,23 +1,13 @@
-/**
- * Merge object b with object a.
- *
- *     var a = { foo: 'bar' }
- *       , b = { bar: 'baz' };
- *
- *     merge(a, b);
- *     // => { foo: 'bar', bar: 'baz' }
- *
- * @param {Object} a
- * @param {Object} b
- * @return {Object}
- * @api public
- */
+'use strict';
 
-exports = module.exports = function(a, b){
-  if (a && b) {
-    for (var key in b) {
-      a[key] = b[key];
-    }
-  }
-  return a;
-};
+const WebSocket = require('./lib/websocket');
+
+WebSocket.createWebSocketStream = require('./lib/stream');
+WebSocket.Server = require('./lib/websocket-server');
+WebSocket.Receiver = require('./lib/receiver');
+WebSocket.Sender = require('./lib/sender');
+
+WebSocket.WebSocket = WebSocket;
+WebSocket.WebSocketServer = WebSocket.Server;
+
+module.exports = WebSocket;
