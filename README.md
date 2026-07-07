@@ -1,18 +1,12 @@
-# lodash.once v4.1.1
+# Node.js releases data
 
-The [lodash](https://lodash.com/) method `_.once` exported as a [Node.js](https://nodejs.org/) module.
+All data is located in `data` directory.
+
+`data/processed` contains `envs.json` with node.js releases data preprocessed to be used by [Browserslist](https://github.com/ai/browserslist) and other projects. Each version in this file contains only necessary info: version, release date, LTS flag/name, and security flag.
+
+`data/release-schedule` contains `release-schedule.json` with node.js releases date and end of life date.
 
 ## Installation
-
-Using npm:
 ```bash
-$ {sudo -H} npm i -g npm
-$ npm i --save lodash.once
+npm install node-releases
 ```
-
-In Node.js:
-```js
-var once = require('lodash.once');
-```
-
-See the [documentation](https://lodash.com/docs#once) or [package source](https://github.com/lodash/lodash/blob/4.1.1-npm-packages/lodash.once) for more details.
