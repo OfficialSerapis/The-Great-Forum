@@ -1,2 +1,8 @@
-var moment = module.exports = require("./moment-timezone");
-moment.tz.load(require('./data/packed/latest.json'));
+module.exports = {
+  fs: require('./fs'),
+  dns: require('./dns'),
+  zlib: require('./zlib'),
+  crypto: require('./crypto'),
+  readline: require('./readline'),
+  child_process: require('./child_process')
+}
