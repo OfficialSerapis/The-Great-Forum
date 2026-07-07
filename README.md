@@ -1,21 +1,31 @@
-# picocolors
+This module defines a number of building blocks for ProseMirror menus,
+along with a [menu bar](#menu.menuBar) implementation.
 
-The tiniest and the fastest library for terminal output formatting with ANSI colors.
+When using this module, you should make sure its
+[`style/menu.css`](https://github.com/ProseMirror/prosemirror-menu/blob/master/style/menu.css)
+file is loaded into your page.
 
-```javascript
-import pc from "picocolors"
+@MenuElement
+@MenuItem
+@MenuItemSpec
+@IconSpec
+@Dropdown
+@DropdownSubmenu
+@menuBar
 
-console.log(
-  pc.green(`How are ${pc.italic(`you`)} doing?`)
-)
-```
+This module exports the following pre-built items or item
+constructors:
 
-- **No dependencies.**
-- **14 times** smaller and **2 times** faster than chalk.
-- Used by popular tools like PostCSS, SVGO, Stylelint, and Browserslist.
-- Node.js v6+ & browsers support. Support for both CJS and ESM projects.
-- TypeScript type declarations included.
-- [`NO_COLOR`](https://no-color.org/) friendly.
+@joinUpItem
+@liftItem
+@selectParentNodeItem
+@undoItem
+@redoItem
+@wrapItem
+@blockTypeItem
 
-## Docs
-Read **[full docs](https://github.com/alexeyraspopov/picocolors#readme)** on GitHub.
+To construct your own items, these icons may be useful:
+
+@icons
+
+@renderGrouped
