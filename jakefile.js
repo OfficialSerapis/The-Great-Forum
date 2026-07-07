@@ -1,15 +1,36 @@
-testTask('FileList', function () {
-  this.testFiles.include('test/*.js');
+
+task('foo', function () {
+  console.log('ran top-level foo');
 });
 
-publishTask('FileList', function () {
-  this.packageFiles.include([
-  'jakefile.js',
-  'README.md',
-  'package.json',
-  'index.js',
-  'index.d.ts'
-  ]);
+task('bar', function () {
+  console.log('ran top-level bar');
+});
+
+task('zerb', function () {
+  console.log('ran zerb');
+});
+
+namespace('zooby', function () {
+  task('zerp', function () {});
+
+  task('derp', ['zerp'], function () {});
+
+  namespace('frang', function () {
+
+    namespace('w00t', function () {
+      task('bar', function () {
+        console.log('ran zooby:frang:w00t:bar');
+      });
+    });
+
+    task('asdf', function () {});
+  });
+
+});
+
+namespace('hurr', function () {
+  namespace('durr');
 });
 
 
