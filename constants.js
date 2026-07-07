@@ -1,9 +1,8 @@
-export var YEAR = 0,
-    MONTH = 1,
-    DATE = 2,
-    HOUR = 3,
-    MINUTE = 4,
-    SECOND = 5,
-    MILLISECOND = 6,
-    WEEK = 7,
-    WEEKDAY = 8;
+export const zeroRightClassName = 'right-scroll-bar-position';
+export const fullWidthClassName = 'width-before-scroll-bar';
+export const noScrollbarsClassName = 'with-scroll-bars-hidden';
+/**
+ * Name of a CSS variable containing the amount of "hidden" scrollbar
+ * ! might be undefined ! use will fallback!
+ */
+export const removedBarSizeVariable = '--removed-body-scroll-bar-size';

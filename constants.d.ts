@@ -1,4 +1,8 @@
+export declare const zeroRightClassName = "right-scroll-bar-position";
+export declare const fullWidthClassName = "width-before-scroll-bar";
+export declare const noScrollbarsClassName = "with-scroll-bars-hidden";
 /**
- * IS `true` for Node.js 10.10 and greater.
+ * Name of a CSS variable containing the amount of "hidden" scrollbar
+ * ! might be undefined ! use will fallback!
  */
-export declare const IS_SUPPORT_READDIR_WITH_FILE_TYPES: boolean;
+export declare const removedBarSizeVariable = "--removed-body-scroll-bar-size";

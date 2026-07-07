@@ -1,7 +1,4 @@
-'use strict';
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./cjs/react.production.min.js');
-} else {
-  module.exports = require('./cjs/react.development.js');
-}
+import { RemoveScrollBar } from './component';
+import { zeroRightClassName, fullWidthClassName, noScrollbarsClassName, removedBarSizeVariable } from './constants';
+import { getGapWidth } from './utils';
+export { RemoveScrollBar, zeroRightClassName, fullWidthClassName, noScrollbarsClassName, removedBarSizeVariable, getGapWidth, };

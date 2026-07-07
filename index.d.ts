@@ -1,2 +1,2 @@
-declare const queueMicrotask: (cb: () => void) => void
-export = queueMicrotask
+// THIS FILE IS AUTO GENERATED
+export * from './lib/index';
