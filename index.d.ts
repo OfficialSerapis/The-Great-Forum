@@ -1,2 +1,3 @@
-// THIS FILE IS AUTO GENERATED
-export * from './lib/index';
+export { styleSingleton } from './component';
+export { stylesheetSingleton } from './singleton';
+export { styleHookSingleton } from './hook';

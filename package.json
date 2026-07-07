@@ -1,8 +1,6 @@
 {
-  "description": "separate entrypoint for constants only",
+  "name": "react-transition-group/config",
   "private": true,
-  "main": "../dist/es5/constants.js",
-  "jsnext:main": "../dist/es2015/constants.js",
-  "module": "../dist/es2015/constants.js",
-  "sideEffects": false
+  "main": "../cjs/config.js",
+  "module": "../esm/config.js"
 }
