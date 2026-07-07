@@ -1,5 +1,15 @@
-import * as Ajv from 'ajv';
-import { FieldValues, ResolverOptions, ResolverResult } from 'react-hook-form';
-export type Resolver = <T>(schema: Ajv.JSONSchemaType<T>, schemaOptions?: Ajv.Options, factoryOptions?: {
-    mode?: 'async' | 'sync';
-}) => <TFieldValues extends FieldValues, TContext>(values: TFieldValues, context: TContext | undefined, options: ResolverOptions<TFieldValues>) => Promise<ResolverResult<TFieldValues>>;
+import type { SourceMapInput } from '@jridgewell/trace-mapping';
+export type { SourceMapSegment, DecodedSourceMap, EncodedSourceMap, } from '@jridgewell/trace-mapping';
+export type { SourceMapInput };
+export declare type LoaderContext = {
+    readonly importer: string;
+    readonly depth: number;
+    source: string;
+    content: string | null | undefined;
+    ignore: boolean | undefined;
+};
+export declare type SourceMapLoader = (file: string, ctx: LoaderContext) => SourceMapInput | null | undefined | void;
+export declare type Options = {
+    excludeContent?: boolean;
+    decodedMappings?: boolean;
+};
