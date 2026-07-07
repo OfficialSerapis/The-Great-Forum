@@ -1,83 +1,102 @@
-import Redis from 'ioredis';
-import dotenv from 'dotenv';
+import { cacheConfig } from '../config/cache';
+import { DocumentPerformance } from '../types/analytics';
 
-dotenv.config();
+class CacheManager {
+  private static instance: CacheManager;
+  private constructor() {}
 
-export class CacheConfig {
-  private static instance: CacheConfig;
-  private redis: Redis;
-  private constructor() {
-    this.redis = new Redis({
-      host: process.env.REDIS_HOST || 'localhost',
-      port: parseInt(process.env.REDIS_PORT || '6379', 10),
-      password: process.env.REDIS_PASSWORD || '',
-      db: parseInt(process.env.REDIS_DB || '0', 10)
-    });
-
-    this.redis.on('error', (error) => {
-      console.error('Redis error:', error);
-    });
-
-    this.redis.on('connect', () => {
-      console.log('Connected to Redis');
-    });
-  }
-
-  public static getInstance(): CacheConfig {
-    if (!CacheConfig.instance) {
-      CacheConfig.instance = new CacheConfig();
+  public static getInstance(): CacheManager {
+    if (!CacheManager.instance) {
+      CacheManager.instance = new CacheManager();
     }
-    return CacheConfig.instance;
+    return CacheManager.instance;
   }
 
-  async get(key: string): Promise<any> {
+  async getDocumentCache(documentId: string): Promise<any> {
     try {
-      const value = await this.redis.get(key);
-      return value ? JSON.parse(value) : null;
+      const key = `document:${documentId}`;
+      const cache = await cacheConfig.get(key);
+      return cache;
     } catch (error) {
       console.error('Cache get error:', error);
       return null;
     }
   }
 
-  async set(key: string, value: any, ttl?: number): Promise<void> {
+  async setDocumentCache(documentId: string, data: any, ttl: number = 3600): Promise<void> {
     try {
-      const stringValue = JSON.stringify(value);
-      if (ttl) {
-        await this.redis.setex(key, ttl, stringValue);
-      } else {
-        await this.redis.set(key, stringValue);
-      }
+      const key = `document:${documentId}`;
+      await cacheConfig.set(key, data, ttl);
     } catch (error) {
       console.error('Cache set error:', error);
     }
   }
 
-  async del(key: string): Promise<void> {
+  async getUserCache(userId: string): Promise<any> {
     try {
-      await this.redis.del(key);
+      const key = `user:${userId}`;
+      const cache = await cacheConfig.get(key);
+      return cache;
     } catch (error) {
-      console.error('Cache delete error:', error);
+      console.error('Cache get error:', error);
+      return null;
     }
   }
 
-  async incr(key: string): Promise<number> {
+  async setUserCache(userId: string, data: any, ttl: number = 3600): Promise<void> {
     try {
-      return await this.redis.incr(key);
+      const key = `user:${userId}`;
+      await cacheConfig.set(key, data, ttl);
     } catch (error) {
-      console.error('Cache increment error:', error);
-      return 0;
+      console.error('Cache set error:', error);
     }
   }
 
-  async decr(key: string): Promise<number> {
+  async getAnalyticsCache(documentId: string): Promise<DocumentPerformance> {
     try {
-      return await this.redis.decr(key);
+      const key = `analytics:document:${documentId}`;
+      const cache = await cacheConfig.get(key);
+      return cache;
     } catch (error) {
-      console.error('Cache decrement error:', error);
-      return 0;
+      console.error('Cache get error:', error);
+      return null;
+    }
+  }
+
+  async setAnalyticsCache(documentId: string, data: DocumentPerformance, ttl: number = 3600): Promise<void> {
+    try {
+      const key = `analytics:document:${documentId}`;
+      await cacheConfig.set(key, data, ttl);
+    } catch (error) {
+      console.error('Cache set error:', error);
+    }
+  }
+
+  async invalidateCache(key: string): Promise<void> {
+    try {
+      await cacheConfig.del(key);
+    } catch (error) {
+      console.error('Cache invalidate error:', error);
+    }
+  }
+
+  async invalidateUserCache(userId: string): Promise<void> {
+    try {
+      await this.invalidateCache(`user:${userId}`);
+      await this.invalidateCache(`analytics:user:${userId}`);
+    } catch (error) {
+      console.error('User cache invalidate error:', error);
+    }
+  }
+
+  async invalidateDocumentCache(documentId: string): Promise<void> {
+    try {
+      await this.invalidateCache(`document:${documentId}`);
+      await this.invalidateCache(`analytics:document:${documentId}`);
+    } catch (error) {
+      console.error('Document cache invalidate error:', error);
     }
   }
 }
 
-export const cacheConfig = CacheConfig.getInstance();
+export const cacheManager = CacheManager.getInstance();

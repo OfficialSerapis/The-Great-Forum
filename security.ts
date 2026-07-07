@@ -1,38 +1,48 @@
-import { Request, Response, NextFunction } from 'express';
-import { ApiError } from './errorHandler';
+export interface RateLimitOptions {
+  limit: number;
+  windowMs: number;
+  keyGenerator?: (req: Request) => string;
+}
 
-export const rateLimiter = (req: Request, res: Response, next: NextFunction) => {
-  // Implement rate limiting
-  next();
-};
+export interface SecurityHeaders {
+  'X-Frame-Options': string;
+  'X-Content-Type-Options': string;
+  'Referrer-Policy': string;
+  'Strict-Transport-Security': string;
+  'Content-Security-Policy': string;
+}
 
-export const xssProtection = (req: Request, res: Response, next: NextFunction) => {
-  // Implement XSS protection
-  next();
-};
-
-export const csrfProtection = (req: Request, res: Response, next: NextFunction) => {
-  // Implement CSRF protection
-  next();
-};
-
-export const securityHeaders = (req: Request, res: Response, next: NextFunction) => {
-  // Set security headers
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-  res.setHeader('Content-Security-Policy', "default-src 'self'");
-  next();
-};
-
-export const validateInput = (schema: any) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await schema.validate(req.body);
-      next();
-    } catch (error) {
-      next(new ApiError('Invalid input data', 400));
-    }
+export interface InputValidationSchema {
+  [key: string]: any;
+  required?: string[];
+  properties?: {
+    [key: string]: {
+      type: string;
+      format?: string;
+      pattern?: string;
+      minLength?: number;
+      maxLength?: number;
+    };
   };
-};
+}
+
+export interface JWTConfig {
+  secret: string;
+  expiresIn: string;
+  algorithms: string[];
+}
+
+export interface CSRFConfig {
+  cookie: {
+    key: string;
+    secure: boolean;
+    httpOnly: boolean;
+  };
+  value: string;
+}
+
+export interface XSSConfig {
+  onNoMatch: 'escape' | 'throw';
+  whiteList: string[];
+  escapeHtml: boolean;
+}

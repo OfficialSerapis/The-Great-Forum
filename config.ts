@@ -1,63 +1,69 @@
-import { createClient } from '@sentry/node';
-import { createTransport } from 'nodemailer';
-import { Logger } from '../utils/logger';
+import dotenv from 'dotenv';
+import path from 'path';
 
-// Initialize Sentry
-const sentry = createClient({
-  dsn: process.env.SENTRY_DSN,
-  environment: process.env.NODE_ENV,
-  tracesSampleRate: 1.0,
-});
+// Load environment variables
+const envPath = path.join(__dirname, '.env');
+dotenv.config({ path: envPath });
 
-// Initialize email transport
-const emailTransport = createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true',
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD,
+// Shared configuration
+export const config = {
+  // Version
+  version: process.env.SHARED_VERSION || '1.0.0',
+
+  // Feature Flags
+  features: {
+    darkMode: process.env.SHARED_ENABLE_DARK_MODE === 'true',
+    notifications: process.env.SHARED_ENABLE_NOTIFICATIONS === 'true',
+    emoji: process.env.SHARED_ENABLE_EMOJI === 'true',
   },
-});
 
-// Initialize performance monitoring
-const performanceMonitoring = {
-  thresholds: {
-    responseTime: 1000, // 1 second
-    memoryUsage: 100 * 1024 * 1024, // 100MB
-    cpuUsage: 80, // 80%
+  // Performance
+  performance: {
+    cacheTTL: parseInt(process.env.SHARED_CACHE_TTL || '3600'),
+    maxRequests: parseInt(process.env.SHARED_MAX_REQUESTS || '100'),
   },
-  checkInterval: 5000, // 5 seconds
-};
 
-// Initialize error reporting
-const errorReporting = {
-  enabled: process.env.ERROR_REPORTING === 'true',
-  providers: [
-    'sentry',
-    'email',
-    'console',
-  ],
-};
+  // Security
+  security: {
+    csrfToken: process.env.SHARED_CSRF_TOKEN || 'your_csrf_token',
+    corsOrigin: process.env.SHARED_CORS_ORIGIN || 'http://localhost:3000',
+  },
 
-// Initialize health checks
-const healthChecks = {
-  endpoints: {
-    '/health': {
-      checks: ['database', 'redis', 'cache'],
-      timeout: 5000,
-    },
-    '/ready': {
-      checks: ['database', 'redis', 'cache', 'services'],
-      timeout: 10000,
-    },
+  // Analytics
+  analytics: {
+    id: process.env.SHARED_ANALYTICS_ID || 'your_analytics_id',
+  },
+
+  // Storage
+  storage: {
+    uploadDir: process.env.SHARED_UPLOAD_DIR || './uploads',
+    maxFileSize: parseInt(process.env.SHARED_MAX_FILE_SIZE || '5000000'),
+    allowedFileTypes: (process.env.SHARED_ALLOWED_FILE_TYPES || 'image/jpeg,image/png,image/gif,application/pdf')
+      .split(',')
+      .map(type => type.trim()),
+  },
+
+  // Cache
+  cache: {
+    ttl: parseInt(process.env.SHARED_CACHE_TTL || '3600'),
+    max: parseInt(process.env.SHARED_CACHE_MAX || '1000'),
+  },
+
+  // Logging
+  logging: {
+    level: process.env.SHARED_LOG_LEVEL || 'debug',
+    dir: process.env.SHARED_LOG_DIR || './logs',
   },
 };
 
-export {
-  sentry,
-  emailTransport,
-  performanceMonitoring,
-  errorReporting,
-  healthChecks,
-};
+// Type definitions
+export type Config = typeof config;
+export type FeatureFlags = typeof config.features;
+export type PerformanceConfig = typeof config.performance;
+export type SecurityConfig = typeof config.security;
+export type AnalyticsConfig = typeof config.analytics;
+export type StorageConfig = typeof config.storage;
+export type CacheConfig = typeof config.cache;
+export type LoggingConfig = typeof config.logging;
+
+export default config;
