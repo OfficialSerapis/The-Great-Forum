@@ -1,8 +1,17 @@
-'use strict';
+import { isSeq } from '../../nodes/identity.js';
+import { YAMLSeq } from '../../nodes/YAMLSeq.js';
 
-var Type = require('../type');
+const seq = {
+    collection: 'seq',
+    default: true,
+    nodeClass: YAMLSeq,
+    tag: 'tag:yaml.org,2002:seq',
+    resolve(seq, onError) {
+        if (!isSeq(seq))
+            onError('Expected a sequence for this tag');
+        return seq;
+    },
+    createNode: (schema, obj, ctx) => YAMLSeq.from(schema, obj, ctx)
+};
 
-module.exports = new Type('tag:yaml.org,2002:seq', {
-  kind: 'sequence',
-  construct: function (data) { return data !== null ? data : []; }
-});
+export { seq };

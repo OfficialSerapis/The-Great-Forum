@@ -1,22 +1,17 @@
-exports.error = function(options) {
-    return new Error(options);
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-
-var Error = function(options) {
-    this.expected = options.expected;
-    this.actual = options.actual;
-    this._location = options.location;
-};
-
-Error.prototype.describe = function() {
-    var locationDescription = this._location ? this._location.describe() + ":\n" : "";
-    return locationDescription + "Expected " + this.expected + "\nbut got " + this.actual;
-};
-
-Error.prototype.lineNumber = function() {
-    return this._location.lineNumber();
-};
-
-Error.prototype.characterNumber = function() {
-    return this._location.characterNumber();
-};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getErrorMap = exports.setErrorMap = exports.defaultErrorMap = void 0;
+const en_1 = __importDefault(require("./locales/en"));
+exports.defaultErrorMap = en_1.default;
+let overrideErrorMap = en_1.default;
+function setErrorMap(map) {
+    overrideErrorMap = map;
+}
+exports.setErrorMap = setErrorMap;
+function getErrorMap() {
+    return overrideErrorMap;
+}
+exports.getErrorMap = getErrorMap;

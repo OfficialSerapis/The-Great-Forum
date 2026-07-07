@@ -1,13 +1,33 @@
 'use strict';
+const lenient = require('./lenient');
 
-const WebSocket = require('./lib/websocket');
+const yn = (input, options) => {
+	input = String(input).trim();
 
-WebSocket.createWebSocketStream = require('./lib/stream');
-WebSocket.Server = require('./lib/websocket-server');
-WebSocket.Receiver = require('./lib/receiver');
-WebSocket.Sender = require('./lib/sender');
+	options = Object.assign({
+		lenient: false,
+		default: null
+	}, options);
 
-WebSocket.WebSocket = WebSocket;
-WebSocket.WebSocketServer = WebSocket.Server;
+	if (options.default !== null && typeof options.default !== 'boolean') {
+		throw new TypeError(`Expected the \`default\` option to be of type \`boolean\`, got \`${typeof options.default}\``);
+	}
 
-module.exports = WebSocket;
+	if (/^(?:y|yes|true|1)$/i.test(input)) {
+		return true;
+	}
+
+	if (/^(?:n|no|false|0)$/i.test(input)) {
+		return false;
+	}
+
+	if (options.lenient === true) {
+		return lenient(input, options);
+	}
+
+	return options.default;
+};
+
+module.exports = yn;
+// TODO: Remove this for the next major release
+module.exports.default = yn;

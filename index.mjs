@@ -1,8 +1,8 @@
-import shim from './build/lib/platform-shims/node.js'
-import { y18n as _y18n } from './build/lib/index.js'
+'use strict';
 
-const y18n = (opts) => {
-  return _y18n(opts, shim)
-}
+// Bootstraps yargs for ESM:
+import esmPlatformShim from './lib/platform-shims/esm.mjs';
+import {YargsFactory} from './build/lib/yargs-factory.js';
 
-export default y18n
+const Yargs = YargsFactory(esmPlatformShim);
+export default Yargs;

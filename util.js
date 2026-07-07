@@ -1,14 +1,2 @@
-'use strict';
-
-// This is a placeholder for util.js in node.js land.
-
-const {
-  ObjectCreate,
-  ObjectFreeze,
-} = require('./primordials');
-
-const kEmptyObject = ObjectFreeze(ObjectCreate(null));
-
-module.exports = {
-  kEmptyObject,
-};
+// Re-exporter for Node.js < 12.16.0
+module.exports = require('./dist/util.js')

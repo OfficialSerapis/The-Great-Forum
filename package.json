@@ -1,5 +1,3 @@
 {
-  "name": "web-streams-polyfill",
-  "main": "../dist/polyfill.js",
-  "types": "../types/polyfill.d.ts"
+  "type": "module"
 }

@@ -1,9 +1,17 @@
-if (process.env.npm_package_name === 'pseudomap' &&
-    process.env.npm_lifecycle_script === 'test')
-  process.env.TEST_PSEUDOMAP = 'true'
+import { isMap } from '../../nodes/identity.js';
+import { YAMLMap } from '../../nodes/YAMLMap.js';
 
-if (typeof Map === 'function' && !process.env.TEST_PSEUDOMAP) {
-  module.exports = Map
-} else {
-  module.exports = require('./pseudomap')
-}
+const map = {
+    collection: 'map',
+    default: true,
+    nodeClass: YAMLMap,
+    tag: 'tag:yaml.org,2002:map',
+    resolve(map, onError) {
+        if (!isMap(map))
+            onError('Expected a mapping for this tag');
+        return map;
+    },
+    createNode: (schema, obj, ctx) => YAMLMap.from(schema, obj, ctx)
+};
+
+export { map };
