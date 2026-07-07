@@ -1,29 +1,21 @@
-1.1.2 / 2016-01-17
+1.0.2 / 2019-02-21
+==================
+
+  * Fix `res.writeHead` patch missing return value
+
+1.0.1 / 2015-09-29
 ==================
 
   * perf: enable strict mode
 
-1.1.1 / 2014-12-30
+1.0.0 / 2014-08-10
 ==================
 
-  * Improve `browserify` support
+  * Honor `res.statusCode` change in `listener`
+  * Move to `jshttp` organization
+  * Prevent `arguments`-related de-opt
 
-1.1.0 / 2014-07-05
+0.0.0 / 2014-05-13
 ==================
 
-  * Add `CONNECT` method
- 
-1.0.1 / 2014-06-02
-==================
-
-  * Fix module to work with harmony transform
-
-1.0.0 / 2014-05-08
-==================
-
-  * Add `PURGE` method
-
-0.1.0 / 2013-10-28
-==================
-
-  * Add `http.METHODS` support
+  * Initial implementation

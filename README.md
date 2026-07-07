@@ -1,12 +1,12 @@
-# Node.js releases data
+# obuf - Offset buffer implementation.
 
-All data is located in `data` directory.
+Byte buffer specialized for data in chunks with special cases for dropping
+bytes in the front, merging bytes in to various integer types and
+abandoning buffer without penalty for previous chunk merges.
 
-`data/processed` contains `envs.json` with node.js releases data preprocessed to be used by [Browserslist](https://github.com/ai/browserslist) and other projects. Each version in this file contains only necessary info: version, release date, LTS flag/name, and security flag.
+Used in spyd-transport, part of spdy support for http2.
 
-`data/release-schedule` contains `release-schedule.json` with node.js releases date and end of life date.
+This software is licensed under the MIT License.
 
-## Installation
-```bash
-npm install node-releases
-```
+By Fedor Indutny, 2015.
+

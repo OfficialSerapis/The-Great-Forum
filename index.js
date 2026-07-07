@@ -1,5 +1,14 @@
+// Top level file is just a mixin of submodules & constants
 'use strict';
 
-require('./isArguments');
+var assign    = require('./lib/utils/common').assign;
 
-require('./shim');
+var deflate   = require('./lib/deflate');
+var inflate   = require('./lib/inflate');
+var constants = require('./lib/zlib/constants');
+
+var pako = {};
+
+assign(pako, deflate, inflate, constants);
+
+module.exports = pako;
