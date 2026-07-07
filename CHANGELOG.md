@@ -1,11 +1,22 @@
-## Unreleased
+# Changelog
 
+## 7.x
 
-## [1.0.2][] – 2019-11-10
+- breaking: Support only `Node >= 10`
+- fix: `acquire` not resolving after destroying available resources
 
-### Fixed
+## 6.0.0
 
-- A negative sign is no longer stripped by mistake for numbers of the form −0.000…00(d) where the number of zeros after the decimal point is 2 mod 4.
+- change: `destory` (and `destoryAllNow`) are async now, they wait for `factory.destory`
 
+## 5.0.0
 
-[1.0.2]: https://github.com/charmander/pg-numeric/compare/v1.0.1...v1.0.2
+- Typescript conversion. API is unchanged.
+
+## 4.0.0
+
+- Flow typed code. API is unchanged.
+
+## v3.1.0
+
+- added `maxUses` options [#18](https://github.com/sequelize/sequelize-pool/pull/18)

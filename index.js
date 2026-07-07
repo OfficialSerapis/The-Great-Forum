@@ -1,12 +1,13 @@
 'use strict';
 
-// TODO [>=7]: remove me. I've been moved to 'exports' in package.json
+const WebSocket = require('./lib/websocket');
 
-/**
-  * A Sequelize module that contains the sequelize entry point.
-  *
-  * @module sequelize
-  */
+WebSocket.createWebSocketStream = require('./lib/stream');
+WebSocket.Server = require('./lib/websocket-server');
+WebSocket.Receiver = require('./lib/receiver');
+WebSocket.Sender = require('./lib/sender');
 
-/** Exports the sequelize entry point. */
-module.exports = require('./lib');
+WebSocket.WebSocket = WebSocket;
+WebSocket.WebSocketServer = WebSocket.Server;
+
+module.exports = WebSocket;

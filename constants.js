@@ -1,8 +1,12 @@
-export const zeroRightClassName = 'right-scroll-bar-position';
-export const fullWidthClassName = 'width-before-scroll-bar';
-export const noScrollbarsClassName = 'with-scroll-bars-hidden';
-/**
- * Name of a CSS variable containing the amount of "hidden" scrollbar
- * ! might be undefined ! use will fallback!
- */
-export const removedBarSizeVariable = '--removed-body-scroll-bar-size';
+'use strict';
+
+module.exports = {
+  BINARY_TYPES: ['nodebuffer', 'arraybuffer', 'fragments'],
+  EMPTY_BUFFER: Buffer.alloc(0),
+  GUID: '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
+  kForOnEventAttribute: Symbol('kIsForOnEventAttribute'),
+  kListener: Symbol('kListener'),
+  kStatusCode: Symbol('status-code'),
+  kWebSocket: Symbol('websocket'),
+  NOOP: () => {}
+};

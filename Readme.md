@@ -1,43 +1,23 @@
 
-# escape-html
+# socket.io-adapter
 
-  Escape string for use in HTML
+Default socket.io in-memory adapter class.
 
-## Example
+Compatibility table:
 
-```js
-var escape = require('escape-html');
-var html = escape('foo & bar');
-// -> foo &amp; bar
-```
+| Adapter version | Socket.IO server version |
+|-----------------| ------------------------ |
+| 1.x.x           | 1.x.x / 2.x.x            |
+| 2.x.x           | 3.x.x                    |
 
-## Benchmark
+## How to use
 
-```
-$ npm run-script bench
+This module is not intended for end-user usage, but can be used as an
+interface to inherit from other adapters you might want to build.
 
-> escape-html@1.0.3 bench nodejs-escape-html
-> node benchmark/index.js
-
-
-  http_parser@1.0
-  node@0.10.33
-  v8@3.14.5.9
-  ares@1.9.0-DEV
-  uv@0.10.29
-  zlib@1.2.3
-  modules@11
-  openssl@1.0.1j
-
-  1 test completed.
-  2 tests completed.
-  3 tests completed.
-
-  no special characters    x 19,435,271 ops/sec ±0.85% (187 runs sampled)
-  single special character x  6,132,421 ops/sec ±0.67% (194 runs sampled)
-  many special characters  x  3,175,826 ops/sec ±0.65% (193 runs sampled)
-```
+As an example of an adapter that builds on top of this, please take a look
+at [socket.io-redis](https://github.com/learnboost/socket.io-redis).
 
 ## License
 
-  MIT
+MIT

@@ -1,18 +1,34 @@
-process-nextick-args
-=====
+# shebang-command [![Build Status](https://travis-ci.org/kevva/shebang-command.svg?branch=master)](https://travis-ci.org/kevva/shebang-command)
 
-[![Build Status](https://travis-ci.org/calvinmetcalf/process-nextick-args.svg?branch=master)](https://travis-ci.org/calvinmetcalf/process-nextick-args)
+> Get the command from a shebang
 
-```bash
-npm install --save process-nextick-args
+
+## Install
+
+```
+$ npm install shebang-command
 ```
 
-Always be able to pass arguments to process.nextTick, no matter the platform
+
+## Usage
 
 ```js
-var pna = require('process-nextick-args');
+const shebangCommand = require('shebang-command');
 
-pna.nextTick(function (a, b, c) {
-  console.log(a, b, c);
-}, 'step', 3,  'profit');
+shebangCommand('#!/usr/bin/env node');
+//=> 'node'
+
+shebangCommand('#!/bin/bash');
+//=> 'bash'
 ```
+
+
+## API
+
+### shebangCommand(string)
+
+#### string
+
+Type: `string`
+
+String containing a shebang.
