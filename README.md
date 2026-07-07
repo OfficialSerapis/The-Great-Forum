@@ -1,31 +1,38 @@
-This module defines a number of building blocks for ProseMirror menus,
-along with a [menu bar](#menu.menuBar) implementation.
+ProseMirror's view module displays a given [editor
+state](#state.EditorState) in the DOM, and handles user events.
 
-When using this module, you should make sure its
-[`style/menu.css`](https://github.com/ProseMirror/prosemirror-menu/blob/master/style/menu.css)
-file is loaded into your page.
+Make sure you load `style/prosemirror.css` as a stylesheet when using
+this module.
 
-@MenuElement
-@MenuItem
-@MenuItemSpec
-@IconSpec
-@Dropdown
-@DropdownSubmenu
-@menuBar
+@EditorView
 
-This module exports the following pre-built items or item
-constructors:
+### Props
 
-@joinUpItem
-@liftItem
-@selectParentNodeItem
-@undoItem
-@redoItem
-@wrapItem
-@blockTypeItem
+@EditorProps
 
-To construct your own items, these icons may be useful:
+@NodeViewConstructor
 
-@icons
+@MarkViewConstructor
 
-@renderGrouped
+@DirectEditorProps
+
+@NodeView
+
+@MarkView
+
+@ViewMutationRecord
+
+@DOMEventMap
+
+### Decorations
+
+Decorations make it possible to influence the way the document is
+drawn, without actually changing the document.
+
+@Decoration
+
+@DecorationAttrs
+
+@DecorationSet
+
+@DecorationSource

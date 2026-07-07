@@ -1,8 +1,9 @@
-'use strict';
+if (process.env.npm_package_name === 'pseudomap' &&
+    process.env.npm_lifecycle_script === 'test')
+  process.env.TEST_PSEUDOMAP = 'true'
 
-var Type = require('../type');
-
-module.exports = new Type('tag:yaml.org,2002:map', {
-  kind: 'mapping',
-  construct: function (data) { return data !== null ? data : {}; }
-});
+if (typeof Map === 'function' && !process.env.TEST_PSEUDOMAP) {
+  module.exports = Map
+} else {
+  module.exports = require('./pseudomap')
+}
