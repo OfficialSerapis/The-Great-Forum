@@ -1,13 +1,4 @@
-export declare type SourceLocation = {
-    line: number;
-    column: number;
-};
-export declare class LinesAndColumns {
-    private string;
-    private offsets;
-    constructor(string: string);
-    locationForIndex(index: number): SourceLocation | null;
-    indexForLocation(location: SourceLocation): number | null;
-    private lengthOfLine;
-}
-export default LinesAndColumns;
+
+export function parse(source: string): string[];
+export function parse<T>(source: string, transform: (value: string) => T): T[];
+

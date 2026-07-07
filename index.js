@@ -1,14 +1,24 @@
-// Top level file is just a mixin of submodules & constants
-'use strict';
 
-var assign    = require('./lib/utils/common').assign;
+var test = require('tape')
+var printf = require('pff')
+var getTypeParser = require('../').getTypeParser
+var types = require('./types')
 
-var deflate   = require('./lib/deflate');
-var inflate   = require('./lib/inflate');
-var constants = require('./lib/zlib/constants');
-
-var pako = {};
-
-assign(pako, deflate, inflate, constants);
-
-module.exports = pako;
+test('types', function (t) {
+  Object.keys(types).forEach(function (typeName) {
+    var type = types[typeName]
+    t.test(typeName, function (t) {
+      var parser = getTypeParser(type.id, type.format)
+      type.tests.forEach(function (tests) {
+        var input = tests[0]
+        var expected = tests[1]
+        var result = parser(input)
+        if (typeof expected === 'function') {
+          return expected(t, result)
+        }
+        t.equal(result, expected)
+      })
+      t.end()
+    })
+  })
+})

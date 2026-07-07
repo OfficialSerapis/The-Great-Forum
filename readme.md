@@ -1,33 +1,34 @@
-# is-generator-fn [![Build Status](https://travis-ci.org/sindresorhus/is-generator-fn.svg?branch=master)](https://travis-ci.org/sindresorhus/is-generator-fn)
+# postgres-bytea [![Build Status](https://travis-ci.org/bendrucker/postgres-bytea.svg?branch=master)](https://travis-ci.org/bendrucker/postgres-bytea)
 
-> Check if something is a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
+> Postgres bytea parser
 
 
 ## Install
 
 ```
-$ npm install is-generator-fn
+$ npm install --save postgres-bytea
 ```
 
 
 ## Usage
 
 ```js
-const isGeneratorFn = require('is-generator-fn');
-
-isGeneratorFn(function * () {});
-//=> true
-
-isGeneratorFn(function () {});
-//=> false
+var bytea = require('postgres-bytea');
+bytea('\\000\\100\\200')
+//=> buffer
 ```
 
+## API
 
-## Related
+#### `bytea(input)` -> `buffer`
 
-- [is](https://github.com/sindresorhus/is) - Type check values
+##### input
 
+*Required*  
+Type: `string`
+
+A Postgres bytea binary string.
 
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+MIT © [Ben Drucker](http://bendrucker.me)
