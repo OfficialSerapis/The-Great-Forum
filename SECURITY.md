@@ -2,14 +2,17 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Check below to find which versions are currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| < 1.0   | :x:                |
+| 3.x     | :white_check_mark: |
+| < 3.0   | :x: |
 
 ## Reporting a Vulnerability
 
-Please report all vulnerabilities at [https://github.com/mcollina/fastq/security](https://github.com/mcollina/fastq/security).
+You can report a security vulnerability to this email: piotrek.witek@gmail.com
+
+You'll get a response back to your email shortly after we read your report.
+After analysis of vulnerability is completed we will send you the results and 
+keep you updated about the next steps.
