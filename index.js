@@ -1,18 +1,18 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});
-var _index = require('../tokenizer/index');
-var _charcodes = require('../util/charcodes');
-var _base = require('./base');
-var _statement = require('./statement');
+'use strict'
 
- function parseFile() {
-  // If enabled, skip leading hashbang line.
-  if (
-    _base.state.pos === 0 &&
-    _base.input.charCodeAt(0) === _charcodes.charCodes.numberSign &&
-    _base.input.charCodeAt(1) === _charcodes.charCodes.exclamationMark
-  ) {
-    _index.skipLineComment.call(void 0, 2);
-  }
-  _index.nextToken.call(void 0, );
-  return _statement.parseTopLevel.call(void 0, );
-} exports.parseFile = parseFile;
+// high-level commands
+exports.c = exports.create = require('./lib/create.js')
+exports.r = exports.replace = require('./lib/replace.js')
+exports.t = exports.list = require('./lib/list.js')
+exports.u = exports.update = require('./lib/update.js')
+exports.x = exports.extract = require('./lib/extract.js')
+
+// classes
+exports.Pack = require('./lib/pack.js')
+exports.Unpack = require('./lib/unpack.js')
+exports.Parse = require('./lib/parse.js')
+exports.ReadEntry = require('./lib/read-entry.js')
+exports.WriteEntry = require('./lib/write-entry.js')
+exports.Header = require('./lib/header.js')
+exports.Pax = require('./lib/pax.js')
+exports.types = require('./lib/types.js')

@@ -1,1 +1,4 @@
-function e(){for(var e,o=0,r="",t=arguments.length;o<t;o++)(e=arguments[o])&&"string"==typeof e&&(r+=(r&&" ")+e);return r}module.exports=e,module.exports.clsx=e;
+'use strict';
+
+let Mime = require('./Mime');
+module.exports = new Mime(require('./types/standard'));

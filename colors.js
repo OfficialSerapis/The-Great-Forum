@@ -1,5 +1,2 @@
-export default function colors(s) {
-  return s.match(/.{6}/g).map(function(x) {
-    return "#" + x;
-  });
-}
+let colors = require('./lib/public/colors')
+module.exports = (colors.__esModule ? colors : { default: colors }).default
