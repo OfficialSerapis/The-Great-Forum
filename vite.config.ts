@@ -8,17 +8,14 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export default defineConfig({
+export default defineConfig(async () => ({
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
+    ...((process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined)
       ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
+          (await import("@replit/vite-plugin-cartographer")).cartographer(),
         ]
       : []),
   ],
@@ -34,4 +31,4 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
   },
-});
+}));
