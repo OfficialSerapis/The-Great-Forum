@@ -4,6 +4,7 @@
 	"extends": "@ljharb",
 
 	"rules": {
-		//"max-statements": [2, 12]
-	}
+		"func-style": 0,
+		"id-length": [1],
+	},
 }

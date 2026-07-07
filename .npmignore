@@ -1,5 +1,2 @@
-/coverage/
-/test.js
-/test/
-*.sw[a-p]
-/node_modules/
+.nyc_output/
+coverage/

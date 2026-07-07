@@ -1,25 +1,33 @@
-# import-local
+# is-generator-fn [![Build Status](https://travis-ci.org/sindresorhus/is-generator-fn.svg?branch=master)](https://travis-ci.org/sindresorhus/is-generator-fn)
 
-> Let a globally installed package use a locally installed version of itself if available
+> Check if something is a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 
-Useful for CLI tools that want to defer to the user's locally installed version when available, but still work if it's not installed locally. For example, [AVA](https://avajs.dev) and [XO](https://github.com/xojs/xo) uses this method.
 
 ## Install
 
-```sh
-npm install import-local
 ```
+$ npm install is-generator-fn
+```
+
 
 ## Usage
 
 ```js
-import importLocal from 'import-local';
+const isGeneratorFn = require('is-generator-fn');
 
-if (importLocal(import.meta.url)) {
-	console.log('Using local version of this package');
-} else {
-	// Code for both global and local version here…
-}
+isGeneratorFn(function * () {});
+//=> true
+
+isGeneratorFn(function () {});
+//=> false
 ```
 
-You can also pass in `__filename` when used in a CommonJS context.
+
+## Related
+
+- [is](https://github.com/sindresorhus/is) - Type check values
+
+
+## License
+
+MIT © [Sindre Sorhus](https://sindresorhus.com)

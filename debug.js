@@ -1,15 +1,9 @@
-var debug;
+const debug = (
+  typeof process === 'object' &&
+  process.env &&
+  process.env.NODE_DEBUG &&
+  /\bsemver\b/i.test(process.env.NODE_DEBUG)
+) ? (...args) => console.error('SEMVER', ...args)
+  : () => {}
 
-module.exports = function () {
-  if (!debug) {
-    try {
-      /* eslint global-require: off */
-      debug = require("debug")("follow-redirects");
-    }
-    catch (error) { /* */ }
-    if (typeof debug !== "function") {
-      debug = function () { /* */ };
-    }
-  }
-  debug.apply(null, arguments);
-};
+module.exports = debug

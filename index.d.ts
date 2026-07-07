@@ -1,17 +1,24 @@
-/**
-Check if a file path is a binary file.
+declare const isGeneratorFn: {
+	/**
+	Check if something is a generator function.
 
-@example
-```
-import isBinaryPath = require('is-binary-path');
+	@example
+	```
+	import isGeneratorFn = require('is-generator-fn');
 
-isBinaryPath('source/unicorn.png');
-//=> true
+	isGeneratorFn(function * () {});
+	//=> true
 
-isBinaryPath('source/unicorn.txt');
-//=> false
-```
-*/
-declare function isBinaryPath(filePath: string): boolean;
+	isGeneratorFn(function () {});
+	//=> false
+	```
+	*/
+	(value: unknown): value is GeneratorFunction;
 
-export = isBinaryPath;
+	// TODO: Remove this for the next major release, refactor the whole definition to:
+	// declare function isGeneratorFn(value: unknown): value is GeneratorFunction;
+	// export = isGeneratorFn;
+	default: typeof isGeneratorFn;
+};
+
+export = isGeneratorFn;
