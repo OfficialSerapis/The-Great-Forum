@@ -1,2 +1,3 @@
-export declare const setNonce: (nonce: string) => void;
-export declare const getNonce: () => string | undefined;
+declare function hasOwn<O, K extends PropertyKey, V = unknown>(o: O, p: K): o is O & Record<K, V>;
+
+export = hasOwn;
