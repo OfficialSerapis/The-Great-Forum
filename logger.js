@@ -1,24 +1,22 @@
-let util = require('util');
+let levels = ['error', 'warn', 'log', 'info'];
+let level = 'warn';
 
-let logger = new (function () {
-  let _output = function (type, out) {
-    let quiet = typeof jake != 'undefined' && jake.program &&
-        jake.program.opts && jake.program.opts.quiet;
-    let msg;
-    if (!quiet) {
-      msg = typeof out == 'string' ? out : util.inspect(out);
-      console[type](msg);
-    }
-  };
+function debug(method, ...args) {
+  if (levels.indexOf(method) <= levels.indexOf(level)) {
+    console[method](...args);  // eslint-disable-line no-console
+  }
+}
 
-  this.log = function (out) {
-    _output('log', out);
-  };
+function namespace(ns) {
+  return levels.reduce(function(logger, method) {
+    logger[method] = debug.bind(console, method, ns);
+    return logger;
+  }, {});
+}
 
-  this.error = function (out) {
-    _output('error', out);
-  };
+debug.level = namespace.level = function(newLevel) {
+  level = newLevel;
+};
 
-})();
 
-module.exports = logger;
+export default namespace;

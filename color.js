@@ -1,29 +1,21 @@
-import constant from "./constant.js";
+import Parchment from 'parchment';
 
-function linear(a, d) {
-  return function(t) {
-    return a + t * d;
-  };
+class ColorAttributor extends Parchment.Attributor.Style {
+  value(domNode) {
+    let value = super.value(domNode);
+    if (!value.startsWith('rgb(')) return value;
+    value = value.replace(/^[^\d]+/, '').replace(/[^\d]+$/, '');
+    return '#' + value.split(',').map(function(component) {
+      return ('00' + parseInt(component).toString(16)).slice(-2);
+    }).join('');
+  }
 }
 
-function exponential(a, b, y) {
-  return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
-    return Math.pow(a + t * b, y);
-  };
-}
+let ColorClass = new Parchment.Attributor.Class('color', 'ql-color', {
+  scope: Parchment.Scope.INLINE
+});
+let ColorStyle = new ColorAttributor('color', 'color', {
+  scope: Parchment.Scope.INLINE
+});
 
-export function hue(a, b) {
-  var d = b - a;
-  return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : constant(isNaN(a) ? b : a);
-}
-
-export function gamma(y) {
-  return (y = +y) === 1 ? nogamma : function(a, b) {
-    return b - a ? exponential(a, b, y) : constant(isNaN(a) ? b : a);
-  };
-}
-
-export default function nogamma(a, b) {
-  var d = b - a;
-  return d ? linear(a, d) : constant(isNaN(a) ? b : a);
-}
+export { ColorAttributor, ColorClass, ColorStyle };
