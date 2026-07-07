@@ -1,21 +1,29 @@
-0.2.0 / 2021-05-31
+1.1.2 / 2016-01-17
 ==================
 
-  * Use `req.socket` over deprecated `req.connection`
+  * perf: enable strict mode
 
-0.1.2 / 2017-09-14
+1.1.1 / 2014-12-30
 ==================
 
-  * perf: improve header parsing
-  * perf: reduce overhead when no `X-Forwarded-For` header
+  * Improve `browserify` support
 
-0.1.1 / 2017-09-10
+1.1.0 / 2014-07-05
 ==================
 
-  * Fix trimming leading / trailing OWS
-  * perf: hoist regular expression
-
-0.1.0 / 2014-09-21
+  * Add `CONNECT` method
+ 
+1.0.1 / 2014-06-02
 ==================
 
-  * Initial release
+  * Fix module to work with harmony transform
+
+1.0.0 / 2014-05-08
+==================
+
+  * Add `PURGE` method
+
+0.1.0 / 2013-10-28
+==================
+
+  * Add `http.METHODS` support
