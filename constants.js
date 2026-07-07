@@ -1,14 +1,9 @@
-const { createHash } = require('crypto');
-const { name } = require('../package.json');
-// TODO: increment this version if there are schema changes
-// that are not backwards compatible:
-const VERSION = '4';
-
-const SHA = 'sha1';
-module.exports = {
-    SHA,
-    MAGIC_KEY: '_coverageSchema',
-    MAGIC_VALUE: createHash(SHA)
-        .update(name + '@' + VERSION)
-        .digest('hex')
-};
+export var YEAR = 0,
+    MONTH = 1,
+    DATE = 2,
+    HOUR = 3,
+    MINUTE = 4,
+    SECOND = 5,
+    MILLISECOND = 6,
+    WEEK = 7,
+    WEEKDAY = 8;

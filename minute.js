@@ -7,18 +7,18 @@ import {
     match1to2HasZero,
 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
-import { SECOND } from './constants';
+import { MINUTE } from './constants';
 
 // FORMATTING
 
-addFormatToken('s', ['ss', 2], 0, 'second');
+addFormatToken('m', ['mm', 2], 0, 'minute');
 
 // PARSING
 
-addRegexToken('s', match1to2, match1to2HasZero);
-addRegexToken('ss', match1to2, match2);
-addParseToken(['s', 'ss'], SECOND);
+addRegexToken('m', match1to2, match1to2HasZero);
+addRegexToken('mm', match1to2, match2);
+addParseToken(['m', 'mm'], MINUTE);
 
 // MOMENTS
 
-export var getSetSecond = makeGetSet('Seconds', false);
+export var getSetMinute = makeGetSet('Minutes', false);

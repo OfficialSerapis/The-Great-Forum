@@ -1,11 +1,15 @@
-# 2.1.0
+# Changers Lorgs!
 
-## TypeScript types
+## 1.0
 
-- Add [TypeScript definitions](src/main.d.ts)
+Full rewrite.  Essentially a brand new module.
 
-# 2.0.0
+- Return a promise instead of taking a callback.
+- Use native `fs.mkdir(path, { recursive: true })` when available.
+- Drop support for outdated Node.js versions.  (Technically still works on
+  Node.js v8, but only 10 and above are officially supported.)
 
-## Breaking changes
+## 0.x
 
-- Minimal supported Node.js version is now `10.17.0`
+Original and most widely used recursive directory creation implementation
+in JavaScript, dating back to 2010.
