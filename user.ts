@@ -1,25 +1,17 @@
 export interface User {
-  id: string;
+  id: number;
   username: string;
-  email: string;
-  theme: string;
-  gender: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface AuthResponse {
-  token: string;
-  user: User;
-}
-
-export interface LoginCredentials {
-  email: string;
+  name: string;
   password: string;
-}
-
-export interface RegisterCredentials extends LoginCredentials {
-  username: string;
-  theme: string;
-  gender: string;
+  email?: string;
+  phoneNumber?: string;
+  countryCode?: string;
+  bio?: string;
+  avatar?: string;
+  background?: string;
+  filterMatureContent?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  isAnonymous?: boolean;
+  [key: string]: any;
 }
