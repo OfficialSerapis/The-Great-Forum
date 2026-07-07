@@ -1,18 +1,14 @@
-// @ts-check
+'use strict'
 
-import rootConfig from './root.eslint.config.js'
+const base = require('neostandard')({})
 
-export default [
-  ...rootConfig,
+module.exports = [
+  ...base,
   {
+    name: 'old-standard',
     rules: {
-      'cspell/spellchecker': 'off',
-      '@typescript-eslint/no-unnecessary-condition': 'off',
-      'import/no-duplicates': 'off',
-      'import/no-unresolved': 'off',
-      'import/order': 'off',
-      'no-shadow': 'off',
-      'sort-imports': 'off',
-    },
-  },
+      'no-var': 'off',
+      'object-shorthand': 'off',
+    }
+  }
 ]

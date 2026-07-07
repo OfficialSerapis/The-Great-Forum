@@ -1,11 +1,11 @@
-type Promisable<T> = T | Promise<T>;
+type PathConditionsMap = {
+    [condition: string]: PathConditions | null;
+};
+type PathOrMap = string | PathConditionsMap;
+type PathConditions = PathOrMap | readonly PathOrMap[];
 
-export type Callback = (
-	directory: string,
-	files: string[],
-) => Promisable<string | false | void>;
+declare const resolveExports: (exports: PathConditions, request: string, conditions: readonly string[]) => string[];
 
-export default function (
-	directory: string,
-	callback: Callback,
-): Promise<string | void>;
+declare const resolveImports: (imports: PathConditionsMap, request: string, conditions: readonly string[]) => string[];
+
+export { PathConditions, PathConditionsMap, resolveExports, resolveImports };
